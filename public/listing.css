@@ -1,0 +1,58 @@
+#sharee{
+    font-size: 11px;
+  }
+
+
+@media(max-width: 768px) {
+
+    #sharee{
+    font-size: 11px;
+    text-align: center;
+  }
+
+}
+
+@media(max-width: 576px) {
+
+    .box-body {
+        margin-left: 110px;
+    }
+
+    #sharee{
+    font-size: 11px;
+    text-align: center;
+  }
+
+  .box {
+    position: relative;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 5px;
+    padding: 0px;
+    -webkit-transition: .5s;
+    transition: .5s;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-shadow: 0 0 35px 0 rgb(154 161 171 / 15%);
+    box-shadow: 0 0 35px 0 rgb(154 161 171 / 15%);
+}
+
+}
+
+@media(max-width: 480px) {
+
+    .box-body {
+        margin-left: 60px;
+    }
+}
+
+
+@media(max-width: 371px) {
+
+    .box-body {
+        margin-left: 10px;
+    }
+}
