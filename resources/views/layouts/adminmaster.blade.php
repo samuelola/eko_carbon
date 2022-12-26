@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,6 +21,9 @@
   <link rel="stylesheet" href="{{ asset('file.css') }}">  
   <link rel="stylesheet" href="@sweetalert2/themes/dark/dark.css">
   <link rel="stylesheet" href="{{ asset('animate.css') }}">
+
+  
+
 <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('eko/apple-touch-icon.png') }}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('eko/favicon-32x32.png') }}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('eko/favicon-16x16.png') }}">
@@ -132,6 +134,7 @@ input:focus{
 
   <!-- Side panel -->   
   <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+
   <script src="{{ asset('/htmly/template/vertical-light/src/js/vendors.min.js') }}"></script>
 	<script src="{{ asset('/htmly/template/vertical-light/src/js/pages/chat-popup.js') }}"></script>
     <script src="{{ asset('/htmly/assets/icons/feather-icons/feather.min.js') }}"></script>
@@ -152,7 +155,12 @@ input:focus{
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+  <script src="{{ asset('/htmly/assets/vendor_components/datatable/datatables.min.js') }}"></script>
+
+  <script src="{{ asset('/htmly/template/vertical-light/src/js/pages/data-table.js') }}"></script>
   
+
+  <!--datatable-->
 
   
 

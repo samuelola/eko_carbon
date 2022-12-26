@@ -72,9 +72,10 @@ class KycController extends Controller
     public function admindashboard(Request $request){
         
         $allregistrations = User::all();
+        $theregistrations = User::latest();
         $allusers = User::where('kyc_status',1)->get();
         $listers = User::where('kyc_status',1)->where('role','!=','admin')->get();
-        return view('admin.admindashboard',compact('allregistrations','allusers','listers'));
+        return view('admin.admindashboard',compact('allregistrations','allusers','listers','theregistrations'));
     }
 
     public function adminusers(Request $request){

@@ -118,54 +118,39 @@
 							
 						</div>
 						<div class="p-0">
-							<table class="table table-striped">
-								<thead>
-								  <tr>
-									<th scope="col">ID</th>
-									<th scope="col">Name</th>
-									<th scope="col">Amount</th>
-									<th scope="col">Date Paid</th>
-								  </tr>
-								</thead>
-								<tbody>
-								  <tr>
-									<th scope="row">1</th>
-									<td>Mark</td>
-									<td>11,393,2992</td>
-									<td>19-05-2022</td>
-								  </tr>
-								  <tr>
-									<th scope="row">2</th>
-									<td>Mark</td>
-									<td>11,393,2992</td>
-									<td>19-05-2022</td>
-								  </tr>
-								  <tr>
-									<th scope="row">3</th>
-									<td>Mark</td>
-									<td>11,393,2992</td>
-									<td>19-05-2022</td>
-								  </tr>
-								  <tr>
-									<th scope="row">4</th>
-									<td>Mark</td>
-									<td>11,393,2992</td>
-									<td>19-05-2022</td>
-								  </tr>
-								  <tr>
-									<th scope="row">5</th>
-									<td>Mark</td>
-									<td>11,393,2992</td>
-									<td>19-05-2022</td>
-								  </tr>
-								  <tr>
-									<th scope="row">6</th>
-									<td>Mark</td>
-									<td>11,393,2992</td>
-									<td>19-05-2022</td>
-								  </tr>
-								</tbody>
+
+							  <div class="table-responsive">
+								<table id="exampler" class="table table-hover display nowrap "style="width:100%">
+								  <thead>
+									<tr>
+										<th scope="col">Sn</th>
+										<th scope="col">First Name</th>
+										<th scope="col">Last Name</th>
+										<th scope="col">Email</th>
+										<th scope="col">Created_at</th>
+									  </tr>
+								  </thead>
+								  <tbody>
+									@php
+                                    $sn = 0;
+									@endphp
+									@foreach ($allregistrations as $theregistration)
+									<tr>
+										<th scope="row">{{ $sn+=1; }}</th>
+										<td>{{ ucfirst($theregistration->firstname) }}</td>
+										<td>{{ ucfirst($theregistration->lastname) }}</td>
+										<td>{{ $theregistration->email }}</td>
+										<td>{{ Carbon\Carbon::parse($theregistration->created_at)->format('M j, Y ')}}</td>
+									  </tr>
+									@endforeach
+								  
+								 
+								</tbody>	
 							  </table>
+							  </div>              
+						
+
+							  
 						</div>
 						
 						
@@ -263,6 +248,10 @@
 @endsection
 
 @section('script')
+
+<script>
+	$('#exampler').DataTable( {} );
+</script>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
