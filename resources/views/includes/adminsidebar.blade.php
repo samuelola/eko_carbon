@@ -5,57 +5,81 @@
 		  <div class="multinav-scroll" style="height: 97%;">	
 			  <!-- sidebar menu-->
 			  <ul class="sidebar-menu" data-widget="tree">
+
+				
 			  	
 				<li>
-				  <?php
-
-                    $check = App\Models\User::where('id','=',Auth::user()->id)->first();
-
-					if($check->kyc_status == 0){
-
-					}else{
-
-						?> 
-						<a href="{{ route('dashboard') }}">
-					     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-					     <span>Dashboard</span>
-				        </a>
-						<?php
-
-					}
-				  
-				  ?>
+					<a class="{{ (request()->routeIs('admindashboard')) ? 'myactive' : '' }}" href="{{ route('admindashboard') }}">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+						<span>Dashboard</span>
+					   </a>
 				 
 				</li>
                 
-				<li>
-					<a href="{{ route('profile') }}">
+				{{-- <li>
+					<a class="{{ (request()->routeIs('adminprofile')) ? 'myactive' : '' }}" href="{{ route('adminprofile') }}">
 					  <i data-feather="user"></i>
 					  <span>Profile</span>
 					</a>
-				  </li> 
+				  </li>  --}}
+                <?php
+				
+				$mypermissionr = App\Models\Rolepermission::where('role',Auth::user()->role)->first();
+
+				if($mypermissionr->users == 'true'){
+
+					?> 
+
+<li>
+	<a class="{{ (request()->routeIs('adminusers')) ? 'myactive' : '' }}" href="{{ route('adminusers') }}">
+	  
+
+		<i data-feather="users"></i>
+	  <span>Users</span>
+	</a>
+</li>
 
 
-                <li>
-                    <a href="{{ route('adminusers') }}">
-                      
-  
-                        <i data-feather="users"></i>
-                      <span>Users</span>
-                    </a>
-                </li>
+                    <?php
+
+
+				}else{
+
+				}
+				
+				?>
+
                 
-                <li>
-                    <a href="#">
-                      
-  
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                      <span>Projects</span>
-                    </a>
-                </li>
+                <?php
+				   $mypermissionr = App\Models\Rolepermission::where('role',Auth::user()->role)->first();
+
+				   if($mypermissionr->project == 'true'){
+
+					?>
+					
+					<li>
+						<a class="{{ (request()->routeIs('adminproject')) ? 'myactive' : '' }}" href="{{ route('adminproject') }}">
+						  
+	  
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+						  <span>Projects</span>
+						</a>
+					</li>
+
+					<?php
+
+
+				   }else{
+
+					 
+				   }
+				
+				
+				?>
+                
 
                 <li>
-                    <a href="#">
+                    <a href="{{ route('adminbids') }}">
                       
   
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-database"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
@@ -64,7 +88,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a class="{{ (request()->routeIs('adminsetting')) ? 'myactive' : '' }}" href="{{ route('adminsetting') }}">
                       
   
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
@@ -473,14 +497,7 @@
 				</li>	 	      --}}
 			  </ul>
 			  
-			  {{-- <div class="sidebar-widgets">
-				  <div class="mx-25 mb-30 pb-20 side-bx bg-primary-light rounded20">
-					<div class="text-center">
-						<img src="https://investx-admin-template.multipurposethemes.com/New_InvestX-main-files/html/images/svg-icon/color-svg/custom-32.svg" class="sideimg p-5" alt="">
-						<h4 class="title-bx text-primary">Best Invest Portal</h4>
-					</div>
-				  </div>
-			  </div> --}}
+			 
 		  </div>
 		</div>
     </section>

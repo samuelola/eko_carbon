@@ -13,7 +13,17 @@
     <title>Eko Carbon @yield('title')</title>
     
 	<!-- Vendors Style-->
+
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="{{ asset('/htmly/template/vertical-light/src/css/vendors_css.css') }}">
+
+<!--switch-->
+
+  <link rel="stylesheet" href="{{ asset('/htmly/template/vertical-light/src/css/vendors_css.css') }}"> 
+<link rel="stylesheet" href="{{ asset('/htmly/template/vertical-light/src/css/style.css') }}">
+<link rel="stylesheet" href="{{ asset('/htmly/template/vertical-light/src/css/skin_color.css') }}">
+
+<!--end switch-->
 	  
 	<!-- Style-->  
 	<link rel="stylesheet" href="{{ asset('/htmly/template/vertical-light/src/css/style.css') }}">
@@ -21,8 +31,9 @@
   <link rel="stylesheet" href="{{ asset('file.css') }}">  
   <link rel="stylesheet" href="@sweetalert2/themes/dark/dark.css">
   <link rel="stylesheet" href="{{ asset('animate.css') }}">
-
-  
+  <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ asset('gyrocode.css') }}">
+  {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"> --}}
 
 <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('eko/apple-touch-icon.png') }}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('eko/favicon-32x32.png') }}">
@@ -112,6 +123,27 @@ input:focus{
     background: #e61212;
     text-decoration: none;
 } */
+
+table.dataTable tbody td.select-checkbox:before, table.dataTable tbody th.select-checkbox:before {
+    content: " ";
+    margin-top: -6px;
+    margin-left: -6px;
+    border: 1px solid transparent !important;
+    border-radius: 3px;
+}
+
+table.dataTable tr th.select-checkbox.selected::after {
+    
+}
+
+
+table.dataTable tr th.select-checkbox.selected::after {
+    content: "✔";
+    margin-top: -11px;
+    margin-left: -4px;
+    text-align: center;
+    text-shadow: rgb(176, 190, 217) 1px 1px, rgb(176, 190, 217) -1px -1px, rgb(176, 190, 217) 1px -1px, rgb(176, 190, 217) -1px 1px;
+}
 </style>
 
   </head>
@@ -119,7 +151,7 @@ input:focus{
 <body class="hold-transition light-skin sidebar-mini theme-primary fixed">
 	
 <div class="wrapper">
-	<div id="loader"></div>
+	{{-- <div id="loader"></div> --}}
 	
   @include('includes.adminheader')
   
@@ -129,7 +161,7 @@ input:focus{
   @yield('content')
   <!-- /.content-wrapper -->
 	
-  @include('includes.footer')
+  @include('includes.adminfooter')
 
 
   <!-- Side panel -->   
@@ -147,6 +179,17 @@ input:focus{
   <script src="{{ asset('/htmly/assets/vendor_components/Magnific-Popup-master/dist/jquery.magnific-popup.min.js') }}"></script>
   <script src="{{ asset('/htmly/assets/vendor_components/Magnific-Popup-master/dist/jquery.magnific-popup-init.js') }}"></script>
 
+  <!--switch-->
+
+  <script src="/htmly/template/vertical-light/src/js/vendors.min.js"></script>
+	<script src="/htmly/template/vertical-light/src/js/pages/chat-popup.js"></script>
+    <script src="/htmly/assets/icons/feather-icons/feather.min.js"></script>
+	
+	<script src="/htmly/template/vertical-light/src/js/demo.js"></script>
+	<script src="/htmly/template/vertical-light/src/js/template.js"></script>
+
+  <!--end switch-->
+
 	<script src="{{ asset('/htmly/template/vertical-light/src/js/demo.js') }}"></script>
 	<script src="{{ asset('/htmly/template/vertical-light/src/js/template.js') }}"></script>
 	<script src="{{ asset('/htmly/template/vertical-light/src/js/pages/dashboard.js') }}"></script>
@@ -159,8 +202,10 @@ input:focus{
 
   <script src="{{ asset('/htmly/template/vertical-light/src/js/pages/data-table.js') }}"></script>
   
-
+  <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js"></script>
   <!--datatable-->
+  <script src="{{ asset('gyrocode.js') }}"></script>
+  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
   
 

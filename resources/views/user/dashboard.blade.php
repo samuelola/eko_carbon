@@ -39,7 +39,7 @@
 										
 										{{-- <p class="mb-0 text-success">6210</p> --}}
 									</div>
-									<p style="margin-top: 10px;font-size: 12px;" class="mb-0">{{ $theproject->project_name }}</p>
+									<p style="margin-top: 10px;font-size: 12px;" class="mb-0">{{ $theproject->project_name }} views</p>
 									<div>
 										<h1 style="font-size: 18px;" class="mb-0 fw-600">{{ $theproject->theprojectview }}<small class="ms-10 me-5 text-success"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
 										  <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
@@ -51,11 +51,19 @@
 
                                            $sumprojects = App\Models\Project::sum('theprojectview');
 
-										   $each_views = $theproject->theprojectview;
+										   if($sumprojects > 0){
+
+											$each_views = $theproject->theprojectview;
 										   $total_views = $sumprojects;
 
 										   $percentage_views = ($each_views/$total_views)*100;
 										   echo round($percentage_views,2)."%";
+
+										   }else{
+
+										   }
+
+										  
 
 										?>
 											
@@ -121,8 +129,12 @@
 					<div class="col-lg-7 col-12">
 						<div class="box">
 							<div class="box-body" style="padding-bottom: 20px !important;">
+								
 								<h3 class="box-title">Total Offset Bids</h3>
-									<div id="investment-chart"></div>
+								{{-- <div id="curve_chart" style="width: 520px; height: 290px"></div> --}}
+								{{-- <canvas  id="chartjs_bar" style="width: 520px; height: 290px"></canvas>  --}}
+								
+								<canvas id="myChart"></canvas>
 							</div>
 						</div>		
 					</div>
@@ -133,12 +145,8 @@
 							<div class="box-body" style="padding-bottom: 40px !important;">
 								 <h3 class="box-title">Project Offsets</h3>
 									<div class="d-flex justify-content-start align-items-center mt-md-20 mt-0">
-										<div id="portfolio-chart"></div>
-										<ul class="list-unstyled" style="margin-left: -21px;">
-											<li><span class="badge badge-primary badge-dot me-10"></span> Large Cap Funds</li>
-											<li><span class="badge badge-info badge-dot me-10"></span> Diversified Funds</li>
-											<li><span class="badge badge-success badge-dot me-10"></span> Debt Funds</li>
-										</ul>
+										{{-- <div id="donutchartt" style="width: 950px; height: 250px;"></div> --}}
+										<canvas style="width: 520px; height: 220px;" id="doughnut-chartcanvas-2"></canvas>
 									</div>
 							</div>
 						</div>
@@ -164,58 +172,44 @@
 				<div class="card chart_card2">
 					<div class="card-body">
 						<div class="mt-0">
-							<h4 class="fw-500">Offseters</h4>
+							<h4 class="fw-500">Offsetters</h4>
 							
 						</div>
 						<div class="p-0">
-							<table class="table table-striped">
-								<thead>
-								  <tr>
-									<th scope="col">ID</th>
-									<th scope="col">Name</th>
-									<th scope="col">Amount</th>
-									<th scope="col">Date Paid</th>
-								  </tr>
-								</thead>
-								<tbody>
-								  <tr>
-									<th scope="row">1</th>
-									<td>Mark</td>
-									<td>11,393,2992</td>
-									<td>19-05-2022</td>
-								  </tr>
-								  <tr>
-									<th scope="row">2</th>
-									<td>Mark</td>
-									<td>11,393,2992</td>
-									<td>19-05-2022</td>
-								  </tr>
-								  <tr>
-									<th scope="row">3</th>
-									<td>Mark</td>
-									<td>11,393,2992</td>
-									<td>19-05-2022</td>
-								  </tr>
-								  <tr>
-									<th scope="row">4</th>
-									<td>Mark</td>
-									<td>11,393,2992</td>
-									<td>19-05-2022</td>
-								  </tr>
-								  <tr>
-									<th scope="row">5</th>
-									<td>Mark</td>
-									<td>11,393,2992</td>
-									<td>19-05-2022</td>
-								  </tr>
-								  <tr>
-									<th scope="row">6</th>
-									<td>Mark</td>
-									<td>11,393,2992</td>
-									<td>19-05-2022</td>
-								  </tr>
-								</tbody>
+							<div class="table-responsive">
+								<table id="exampler" class="table table-hover display nowrap "style="width:100%">
+								  <thead>
+									<tr>
+										<th scope="col">Sn</th>
+										<th scope="col">Name</th>
+										<th scope="col">Amount (&#36)</th>
+										<th scope="col">Project Name</th>
+										<th scope="col">Date Paid</th>
+									  </tr>
+								  </thead>
+								  <tbody>
+									@php
+                                    $sn = 0;
+									@endphp
+									@foreach ($offsetterspayments as $val)
+									<tr>
+										<th scope="row">{{ $sn+=1; }}</th>
+										<td>{{ ucfirst($val->user->firstname) }} {{ ucfirst($val->user->lastname) }}</td>
+									
+										<td>{{ number_format($val->amount) }}</td>
+										<td>{{ $val->project->project_name }}</td>
+										<td>{{ Carbon\Carbon::parse($val->created_at)->format('M j, Y ')}}</td>
+									  </tr>
+									@endforeach
+								  
+								 
+								</tbody>	
 							  </table>
+							  </div>
+
+
+
+							
 						</div>
 						
 						
@@ -235,63 +229,65 @@
 						padding-left: 10px;
 						padding-right: 10px;
 					">
-							<div class="timeline-item">
+							
+							@foreach($allprojects as $allproject)
+
+						     @if($allproject->status == 2)
+
+							 <div class="timeline-item">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#46bc5c" class="bi bi-check-circle" viewBox="0 0 16 16">
 									<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
 									<path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
-								  </svg>
+								</svg>
 								<div class="timeline-item-info">
-									<h5 style="margin-top: -18px !important;" class="fs-14 mt-0 mb-1">Project 3 has been approved for listing</h5>
-									<p><span class="ms-2 fs-12">Year: 2015 - 18</span></p>
+									<h5 style="margin-top: -18px !important;" class="fs-14 mt-0 mb-1">{{ $allproject->project_name }} has been {{ $allproject->status ? 'Approved' : 'Approved' }} for listing</h5>
+									<p><span class="ms-2 fs-12">Year: {{ Carbon\Carbon::parse($allproject->created_at)->format('M j, Y ')}}</span></p>
 								</div>
 							</div>
 
-							<div class="timeline-item">
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#46bc5c" class="bi bi-check-circle" viewBox="0 0 16 16">
+							 @elseif($allproject->status == 1)
+
+							 <div class="timeline-item">
+								{{-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" class="bi bi-check-circle" viewBox="0 0 16 16">
 									<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
 									<path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+								  </svg> --}}
+
+								  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107" class="bi bi-slash-circle" viewBox="0 0 16 16">
+									<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+									<path d="M11.354 4.646a.5.5 0 0 0-.708 0l-6 6a.5.5 0 0 0 .708.708l6-6a.5.5 0 0 0 0-.708z"/>
 								  </svg>
 								<div class="timeline-item-info">
-									<h5 style="margin-top: -18px !important;" class="fs-14 mt-0 mb-1">Project 3 has been approved for listing</h5>
-									<p><span class="ms-2 fs-12">Year: 2015 - 18</span></p>
+									<h5 style="margin-top: -18px !important;" class="fs-14 mt-0 mb-1">{{ $allproject->project_name }} has been {{ $allproject->status ? 'Pending' : 'Pending' }} for listing</h5>
+									<p><span class="ms-2 fs-12">Year: {{ Carbon\Carbon::parse($allproject->created_at)->format('M j, Y ')}}</span></p>
 								</div>
 							</div>
 
-							<div class="timeline-item">
+							@elseif($allproject->status == 3)
+							
+
+							 <div class="timeline-item">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-x-circle" viewBox="0 0 16 16">
-									<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-									<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+									<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+									<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path>
 								  </svg>
 								<div class="timeline-item-info">
-									<h5 style="margin-top: -18px !important;" class="fs-14 mt-0 mb-1">Project 3 has been declined for listing</h5>
-									<p><span class="ms-2 fs-12">Year: 2015 - 18</span></p>
-									{{-- <p class="text-muted mt-2 mb-0 pb-3">Project 3 has been approved for listing</p> --}}
+									<h5 style="margin-top: -18px !important;" class="fs-14 mt-0 mb-1">{{ $allproject->project_name }} has been {{ $allproject->status ? 'Declined' : 'Declined' }} for listing</h5>
+									<p><span class="ms-2 fs-12">Year: {{ Carbon\Carbon::parse($allproject->created_at)->format('M j, Y ')}}</span></p>
 								</div>
 							</div>
+								
+							 @endif
 
-							<div class="timeline-item">
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#46bc5c" class="bi bi-check-circle" viewBox="0 0 16 16">
-									<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-									<path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
-								  </svg>
-								<div class="timeline-item-info">
-									<h5 style="margin-top: -18px !important;" class="fs-14 mt-0 mb-1">Project 3 has been approved for listing</h5>
-									<p><span class="ms-2 fs-12">Year: 2015 - 18</span></p>
-									{{-- <p class="text-muted mt-2 mb-0 pb-3">Project 3 has been approved for listing</p> --}}
-								</div>
-							</div>
+							
 
-							<div class="timeline-item">
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#46bc5c" class="bi bi-check-circle" viewBox="0 0 16 16">
-									<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-									<path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
-								  </svg>
-								<div class="timeline-item-info">
-									<h5 style="margin-top: -18px !important;" class="fs-14 mt-0 mb-1">Project 3 has been approved for listing</h5>
-									<p><span class="ms-2 fs-12">Year: 2015 - 18</span></p>
-									{{-- <p class="text-muted mt-2 mb-0 pb-3">Project 3 has been approved for listing</p> --}}
-								</div>
-							</div>
+						  @endforeach
+
+							
+
+							
+
+							
 
 						</div>
 					</div>
@@ -309,6 +305,175 @@
 	  <!-- /.content -->
 	</div>
 </div>
+
+<!-- Long Content Scroll Modal -->
+
+
+@endsection
+
+
+@section('script')
+
+<script>
+	$('#exampler').DataTable( {
+		pageLength : 5,
+
+	} );
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+<?php
+
+		    
+                 
+				foreach($offsetterspaymentsts as $li){
+
+				$woo =  $li->offsetters_amount;
+				$wooname = $li->project_name;
+
+				// echo "['$wooname'" . "," . " $woo],";
+
+				
+                  $sar[] = $wooname;
+				  $jid[] = $woo;
+				
+				}
+
+
+		
+			
+?>			
+
+<script>
+	const ctx = document.getElementById('myChart');
+  
+	new Chart(ctx, {
+	  type: 'bar',
+	  data: {
+		labels: <?php  echo  json_encode($sar);?>,
+		datasets: [{
+		  label: 'offsets',
+		  data: <?php  echo  json_encode($jid);?>,
+		  borderWidth: 1,
+		  
+		}]
+	  },
+	  options: {
+		plugins: {
+            legend: {
+              position: "bottom",
+              
+          }
+        },
+		scales: {
+		  y: {
+			beginAtZero: true
+		  }
+		}
+	  }
+	});
+
+	
+  </script>
+
+<script>
+  
+
+  var ctx1 = document.getElementById('doughnut-chartcanvas-2');
+
+  new Chart(ctx1, {
+	  type: 'doughnut',
+	  data: {
+		labels: <?php  echo  json_encode($sar);?>,
+		datasets: [{
+		  label: 'offsets',
+		  data: <?php  echo  json_encode($jid);?>,
+		  borderWidth: 1,
+		  
+		}]
+	  },
+	  options: {
+		plugins: {
+            legend: {
+              position: "right",
+              
+          }
+        },
+		responsive: true,
+    maintainAspectRatio: false,
+		
+	  }
+	});
+
+  
+
+
+</script>
+
+
+
+
+
+<script type="text/javascript">
+	google.charts.load("current", {packages:["corechart"]});
+	google.charts.setOnLoadCallback(drawChart);
+	function drawChart() {
+	  var data = google.visualization.arrayToDataTable([
+		['Task', 'Hours per Day'],
+		// ['Project A',     50],
+		// ['Project B',      50],
+
+		<?php
+
+		    if($offsetterspaymentsts->count() > 1){
+
+				foreach($offsetterspaymentsts as $li){
+
+				$woo =  $li->offsetters_amount;
+				$wooname = $li->project_name;
+
+				echo "['$wooname'" . "," . " $woo],";
+				}
+
+
+			}
+			
+			
+			else{
+
+				$thelib = ['project1','project2','Project3'];
+				$my = [1,1,1];
+
+				for($i=0; $i<count($thelib); $i++){
+            
+					echo "['$thelib[$i]'" . "," . " $my[$i]],";
+					
+				}
+			}
+                
+		    
+          
+            
+          
+          ?>
+		
+	  ]);
+
+	  var options = {
+		// title: 'Subscribers',
+		pieHole: 0.4,
+	  };
+
+	  var chart = new google.visualization.PieChart(document.getElementById('donutchartt'));
+	  chart.draw(data, options);
+	}
+  </script>
+
 
 @endsection
   

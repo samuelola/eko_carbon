@@ -17,4 +17,9 @@ class Project extends Model
 
         return $this->belongsTo('App\Models\User');
     }
+
+    public function type(){
+
+        return $this->belongsTo('App\Models\Project_type');
+    }
 }

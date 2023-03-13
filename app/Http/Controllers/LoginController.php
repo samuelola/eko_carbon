@@ -36,26 +36,48 @@ class LoginController extends Controller
             $request->session()->regenerate();
 
            
-       if(Auth::user()->role == 'user' && Auth::user()->is_active == 1 && Auth::user()->kyc_status == 1){
+       if(Auth::user()->role == 'lister' && Auth::user()->is_active == 1 && Auth::user()->kyc_status == 1){
 
           $flasher->addSuccess('Welcome back'.' '.ucwords(Auth::user()->firstname));
           return  Redirect::intended('/dashboard');
       
          
        }
-       elseif(Auth::user()->role == 'user' && Auth::user()->is_active == 1 && Auth::user()->kyc_status == 0){
+       elseif(Auth::user()->role == 'user' && Auth::user()->is_active == 1){
 
-        $encrypted = Crypt::encryptString(Auth::user()->id);
-
-        $flasher->addSuccess('List Green Projects'.' '.ucwords(Auth::user()->firstname));
-        return  Redirect::intended('/listing/'.$encrypted);
+        $flasher->addSuccess('Welcome back'.' '.ucwords(Auth::user()->firstname));
+        return  Redirect::intended('/listing/');
        }
 
-       elseif(Auth::user()->role == 'admin' && Auth::user()->is_active == 1 && Auth::user()->kyc_status == 1){
+       elseif(Auth::user()->role == 'admin' && Auth::user()->is_active==1){
 
         $flasher->addSuccess('Welcome back'.' '.ucwords(Auth::user()->firstname));
 
         return  Redirect::intended('/admindashboard');
+
+       }
+
+       elseif(Auth::user()->role == 'superadmin' && Auth::user()->is_active == 1){
+
+        $flasher->addSuccess('Welcome back'.' '.ucwords(Auth::user()->firstname));
+
+        return  Redirect::intended('/admindashboard');
+
+       }
+
+       elseif(Auth::user()->role == 'household' && Auth::user()->is_active == 1){
+
+        $flasher->addSuccess('Welcome back'.' '.ucwords(Auth::user()->firstname));
+
+        return  Redirect::intended('/household/dashboard/');
+
+       }
+
+       elseif(Auth::user()->role == 'company' && Auth::user()->is_active == 1){
+
+        $flasher->addSuccess('Welcome back'.' '.ucwords(Auth::user()->firstname));
+
+        return  Redirect::intended('/company/dashboard/');
 
        }
      
@@ -69,7 +91,7 @@ class LoginController extends Controller
 
 
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => 'Wrong Credentials check your inputs.',
         ]);
 
     }

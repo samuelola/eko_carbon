@@ -134,11 +134,7 @@
 					<img class="rounded" src="#" alt="">
 				</a>
 			    <div class="dropdown-menu">
-					<a class="dropdown-item my-5" href="#"><img class="w-20 rounded me-10" src="https://investx-admin-template.multipurposethemes.com/New_InvestX-main-files/html/images/svg-icon/usa.svg" alt=""> English</a>
-					<a class="dropdown-item my-5" href="#"><img class="w-20 rounded me-10" src="https://investx-admin-template.multipurposethemes.com/New_InvestX-main-files/html/images/svg-icon/spain.svg" alt=""> Spanish</a>
-					<a class="dropdown-item my-5" href="#"><img class="w-20 rounded me-10" src="https://investx-admin-template.multipurposethemes.com/New_InvestX-main-files/html/images/svg-icon/ger.svg" alt=""> German</a>
-					<a class="dropdown-item my-5" href="#"><img class="w-20 rounded me-10" src="https://investx-admin-template.multipurposethemes.com/New_InvestX-main-files/html/images/svg-icon/jap.svg" alt=""> Japanese</a>
-					<a class="dropdown-item my-5" href="#"><img class="w-20 rounded me-10" src="https://investx-admin-template.multipurposethemes.com/New_InvestX-main-files/html/images/svg-icon/fra.svg" alt=""> French</a>
+					
 			    </div>
 			</li> --}}
 			

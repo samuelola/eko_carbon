@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from investx-admin-template.multipurposethemes.com/New_InvestX-main-files/html/template/vertical-light/main/auth_register.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 14 Nov 2022 16:20:59 GMT -->
+
 <head>
   <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -60,6 +60,7 @@
 			<div class="col-12">
 				<img src="logo/eko.png" style="width: 200px;height:50px;margin-left: 320px;position: relative;
 				top: -30px;" alt="logo">
+				
 				<div class="row justify-content-center g-0">
 					<div class="col-lg-5 col-md-5 col-12">
 						<div class="bg-white rounded10 shadow-lg">
@@ -92,7 +93,7 @@
 									</div> --}}
 									<div class="form-group">
 										<div class="input-group mb-3">
-											<span class="input-group-text bg-transparent"><i class="text-fade ti-email"></i></span>
+											{{-- <span class="input-group-text bg-transparent"><i class="text-fade ti-email"></i></span> --}}
 											<input type="email" name="email" class="form-control ps-15 bg-transparent @error('email') is-invalid @enderror" value="{{ old('email') }} " placeholder="Email">
 										</div>
 										<strong style="color: #000">{{ $errors->first('email') }}</strong>
@@ -105,7 +106,7 @@
 									</div> --}}
 									<div class="form-group">
 										<div class="input-group mb-3">
-											<span class="input-group-text bg-transparent"><i class="text-fade ti-lock"></i></span>
+											{{-- <span class="input-group-text bg-transparent"><i class="text-fade ti-lock"></i></span> --}}
 											<input type="password" name="password" class="form-control ps-15 bg-transparent @error('password') is-invalid @enderror" placeholder="Password">
 										</div>
 										<strong style="color: #000">{{ $errors->first('password') }}</strong>

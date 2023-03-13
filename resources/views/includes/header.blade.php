@@ -10,7 +10,8 @@
         </div>
         <div class="logo-lg">
 			{{-- <span class="light-logo" style="color:#000">Eko Carbon</span> --}}
-			<img src="{{ asset('logo/logo_white.svg') }}" style="width: 200px;height:50px;" alt="logo">
+			{{-- <img src="{{ asset('logo/logo_white.svg') }}" style="width: 200px;height:50px;" alt="logo"> --}}
+			<img src="{{ asset('logo/logo.png') }}" style="width: 200px;height:50px;" alt="logo">
             {{-- <span class="light-logo"><img src="/htmly/images/logo-dark-text.png" alt="logo"></span>
             <span class="dark-logo"><img src="/htmly/images/logo-light-text.png" alt="logo"></span> --}}
         </div>
@@ -60,7 +61,7 @@
 								top: 10px;
 								font-weight: 500;">Click to Complete your KYC</a> --}}
 								<div class="wow swing" data-wow-iteration="infinite" style="display: inline-block;">
-									<a class="wow bounceInUp" href="{{ route('kyc',Auth::user()->id) }}" style="color: #fff;
+									<a class="wow bounceInUp" href="{{ route('kyc') }}" style="color: #fff;
 										position: relative;
 										top: 10px;
 										font-weight: 500;">Click to Complete your KYC</a>
@@ -149,11 +150,7 @@
 					<img class="rounded" src="#" alt="">
 				</a>
 			    <div class="dropdown-menu">
-					<a class="dropdown-item my-5" href="#"><img class="w-20 rounded me-10" src="https://investx-admin-template.multipurposethemes.com/New_InvestX-main-files/html/images/svg-icon/usa.svg" alt=""> English</a>
-					<a class="dropdown-item my-5" href="#"><img class="w-20 rounded me-10" src="https://investx-admin-template.multipurposethemes.com/New_InvestX-main-files/html/images/svg-icon/spain.svg" alt=""> Spanish</a>
-					<a class="dropdown-item my-5" href="#"><img class="w-20 rounded me-10" src="https://investx-admin-template.multipurposethemes.com/New_InvestX-main-files/html/images/svg-icon/ger.svg" alt=""> German</a>
-					<a class="dropdown-item my-5" href="#"><img class="w-20 rounded me-10" src="https://investx-admin-template.multipurposethemes.com/New_InvestX-main-files/html/images/svg-icon/jap.svg" alt=""> Japanese</a>
-					<a class="dropdown-item my-5" href="#"><img class="w-20 rounded me-10" src="https://investx-admin-template.multipurposethemes.com/New_InvestX-main-files/html/images/svg-icon/fra.svg" alt=""> French</a>
+					
 			    </div>
 			</li> --}}
 			

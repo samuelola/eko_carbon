@@ -47,15 +47,34 @@
 			</div>
               <div class="dropdown-divider my-30"></div>
               <div>
-                <div class="d-flex align-items-center mb-30">
-                    <div class="me-15 bg-primary-light h-50 w-50 l-h-60 rounded text-center">
-                          <span class="icon-Library fs-24"><span class="path1"></span><span class="path2"></span></span>
-                    </div>
-                    <div class="d-flex flex-column fw-500">
-                        <a href="{{ route('profile') }}" class="text-dark hover-primary mb-1 fs-16">Company Profile</a>
-                        
-                    </div>
-                </div>
+                <?php 
+
+				$thestatus = App\Models\User::where('id','=',Auth::user()->id)->first();
+
+				if($thestatus->kyc_status == 0){
+
+				}else{
+
+				  ?>
+
+<div class="d-flex align-items-center mb-30">
+	<div class="me-15 bg-primary-light h-50 w-50 l-h-60 rounded text-center">
+		  <span class="icon-Library fs-24"><span class="path1"></span><span class="path2"></span></span>
+	</div>
+	<div class="d-flex flex-column fw-500">
+	  
+		<a href="{{ route('profile') }}" class="text-dark hover-primary mb-1 fs-16">Profile</a>
+		{{-- <span class="text-fade">Account settings and more</span> --}}
+	</div>
+</div>
+				  
+				 
+				 <?php
+
+				}
+
+
+				?>	
                 <div class="d-flex align-items-center mb-30">
                     <div class="me-15 bg-primary-light h-50 w-50 l-h-60 rounded text-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
@@ -95,7 +114,9 @@
 		</div>
 	  </div>
   </div>
-  <!-- /quick_user_toggle --> 
+  <!-- /quick_user_toggle -->
+  
+  
 	
   <!-- Control Sidebar -->
   <aside class="control-sidebar">

@@ -1,0 +1,93 @@
+table.dataTable.dt-checkboxes-select tbody tr,
+table.dataTable thead th.dt-checkboxes-select-all,
+table.dataTable tbody td.dt-checkboxes-cell {
+  cursor: pointer;
+}
+
+table.dataTable thead th.dt-checkboxes-select-all,
+table.dataTable tbody td.dt-checkboxes-cell {
+  text-align: center;
+}
+
+div.dataTables_wrapper span.select-info,
+div.dataTables_wrapper span.select-item {
+  margin-left: 0.5em;
+}
+
+@media screen and (max-width: 640px) {
+  div.dataTables_wrapper span.select-info,
+  div.dataTables_wrapper span.select-item {
+    margin-left: 0;
+    display: block;
+  }
+}
+
+.del{
+  margin-left: 46px !important;
+ }
+
+ .del1{
+  margin-left: 40px !important;
+ }
+
+ .del3{
+  position: relative;
+    left: -115px;
+ }
+
+@media(max-width: 576px){
+
+  .del3{
+    position: relative;
+      left: -5px;
+   }
+
+   .del{
+    position: relative !important;
+    left: 46px !important;
+   }
+
+   .del1{
+    position: relative !important;
+    left: 12px !important;
+   }
+}
+
+@media(max-width: 480px){
+
+  .del3 {
+    position: relative;
+    left: 25px;
+}
+
+  .del{
+   position: relative !important;
+   left: 16px !important;
+  }
+
+  .del1{
+    position: relative !important;
+    left: 12px !important;
+   }
+}
+
+@media(max-width: 375px){
+
+  .del3 {
+    position: relative !important;
+    left: 65px !important;
+}
+
+  .del{
+   position: relative !important;
+   left: -36px !important;
+  }
+}
+
+@media(max-width: 360px){
+
+  .del{
+   position: relative !important;
+   left: -52px !important;
+  }
+}

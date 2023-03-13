@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,12 +39,12 @@
 <body class="hold-transition light-skin sidebar-mini theme-primary fixed">
 	
 <div class="wrapper">
-	<div id="loader"></div>
+	{{-- <div id="loader"></div> --}}
 
     <header class="main-header">
         <div class="d-flex align-items-center logo-box justify-content-start" style="background-color:#187a56">	
             <!-- Logo -->
-            <a href="index.html" class="logo">
+            <a href="#" class="logo">
               <!-- logo-->
               <div class="logo-mini w-40">
                   {{-- <span class="light-logo"><img src="/html/images/logo-letter.png" alt="logo"></span>
@@ -55,7 +54,7 @@
                   {{-- <span class="light-logo"><img src="/html/images/logo-dark-text.png" alt="logo"></span>
                   <span class="dark-logo"><img src="/html/images/logo-light-text.png" alt="logo"></span> --}}
 				  {{-- <span class="light-logo" style="color:#000">Eko Carbon</span> --}}
-				  <img src="{{ asset('logo/logo_white.svg') }}" style="width: 200px;height:50px;" alt="logo">
+				  <img src="{{ asset('logo/logo.png') }}" style="width: 200px;height:50px;" alt="logo">
               </div>
             </a>	
         </div>   
@@ -587,7 +586,7 @@
 								</div>
 
 								<div class="form-group">
-									<label class="form-label">Summary :</label>
+									<label class="form-label">Project Summary :</label>
 									<div class="c-inputs-stacked">
 										
 										<textarea style="height: 91px;" class="form-control" name="summary" id="summary" cols="30" rows="10" required></textarea>
@@ -846,15 +845,34 @@
 		  </div>
 			<div class="dropdown-divider my-30"></div>
 			<div>
-			  <div class="d-flex align-items-center mb-30">
-				  <div class="me-15 bg-primary-light h-50 w-50 l-h-60 rounded text-center">
-						<span class="icon-Library fs-24"><span class="path1"></span><span class="path2"></span></span>
-				  </div>
-				  <div class="d-flex flex-column fw-500">
-					  <a href="{{ route('profile') }}" class="text-dark hover-primary mb-1 fs-16">My Profile</a>
-					  {{-- <span class="text-fade">Account settings and more</span> --}}
-				  </div>
-			  </div>
+				<?php 
+
+				$thestatus = App\Models\User::where('id','=',Auth::user()->id)->first();
+
+				if($thestatus->kyc_status == 0){
+
+				}else{
+
+				  ?>
+
+<div class="d-flex align-items-center mb-30">
+	<div class="me-15 bg-primary-light h-50 w-50 l-h-60 rounded text-center">
+		  <span class="icon-Library fs-24"><span class="path1"></span><span class="path2"></span></span>
+	</div>
+	<div class="d-flex flex-column fw-500">
+	  
+		<a href="{{ route('profile') }}" class="text-dark hover-primary mb-1 fs-16">My Profile</a>
+		{{-- <span class="text-fade">Account settings and more</span> --}}
+	</div>
+</div>
+				  
+				 
+				 <?php
+
+				}
+
+
+				?>	
 			  <div class="d-flex align-items-center mb-30">
 				  <div class="me-15 bg-primary-light h-50 w-50 l-h-60 rounded text-center">
 					  {{-- <span class="icon-Write fs-24"><span class="path1"></span><span class="path2"></span></span> --}}

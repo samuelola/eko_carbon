@@ -33,7 +33,7 @@
 <body class="hold-transition light-skin sidebar-mini theme-primary fixed">
 	
 <div class="wrapper">
-	<div id="loader"></div>
+	{{-- <div id="loader"></div> --}}
 
   <header class="main-header">
 	<div class="d-flex align-items-center logo-box justify-content-start" style="background-color:#187a56">	
@@ -222,7 +222,7 @@
                 <div class="col-lg-2"></div>
 				<div class="col-lg-4 col-md-6 ">
                     
-                    <h3 class="text-center">What would like to do?</h3>
+                    <h3 style="margin-left: 40px;" class="text-center">What would like to do?</h3>
 
                     <p id="sharee">Share your intent with us for more customize experience</p>
 				</div>
@@ -253,6 +253,40 @@
 				</div>
                 <div class="col-md-6"></div>
 			</div> --}}
+
+			<div class="row">
+                <div class="col-lg-2"></div>
+				<div class="col-lg-4 col-md-6 ">
+                    <a href="{{ route('kyccarbon') }}">
+					<div class="box" style="padding-bottom: 8px;">
+						
+						<div class="box-body">
+                            <div class="media">
+                                <div class="media-image">
+                                    {{-- <svg style="margin-top: 13px;" xmlns="http://www.w3.org/2000/svg" width="29" height="29" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
+                                        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                                      </svg> --}}
+									  <svg style="margin-top: 22px;" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#187a56" class="bi bi-plus-circle" viewBox="0 0 16 16">
+										<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+										<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+									  </svg>
+									  {{-- <svg style="margin-top: 22px;" viewBox="64 64 896 896" focusable="false" data-icon="bulb" width="22" height="22" fill="#187a56" aria-hidden="true"><path d="M632 888H392c-4.4 0-8 3.6-8 8v32c0 17.7 14.3 32 32 32h192c17.7 0 32-14.3 32-32v-32c0-4.4-3.6-8-8-8zM512 64c-181.1 0-328 146.9-328 328 0 121.4 66 227.4 164 284.1V792c0 17.7 14.3 32 32 32h264c17.7 0 32-14.3 32-32V676.1c98-56.7 164-162.7 164-284.1 0-181.1-146.9-328-328-328zm127.9 549.8L604 634.6V752H420V634.6l-35.9-20.8C305.4 568.3 256 484.5 256 392c0-141.4 114.6-256 256-256s256 114.6 256 256c0 92.5-49.4 176.3-128.1 221.8z"></path></svg> --}}
+									  {{-- <i class="ti-medall" style="font-size: 40px;"></i> --}}
+                                                                </div>
+                                  <div class="media-text">
+      <p style="margin-top: 17px;color: #000;
+	  font-weight: 500;margin-bottom: 0px;">Calculate & Offset Carbon FootPrint</p>
+	  <small style="padding-top: 0px;
+	  font-size: 10px;
+	  color: #000;">Calculate and offset your carbon Footprint</small>
+                                  </div>
+                              </div>
+						</div>
+					</div>
+                   </a>
+				</div>
+                <div class="col-lg-6"></div>
+			</div>
 
             <div class="row">
                 <div class="col-lg-2"></div>
@@ -376,15 +410,36 @@
 		  </div>
 			<div class="dropdown-divider my-30"></div>
 			<div>
-			  <div class="d-flex align-items-center mb-30">
-				  <div class="me-15 bg-primary-light h-50 w-50 l-h-60 rounded text-center">
-						<span class="icon-Library fs-24"><span class="path1"></span><span class="path2"></span></span>
-				  </div>
-				  <div class="d-flex flex-column fw-500">
-					  <a href="{{ route('profile') }}" class="text-dark hover-primary mb-1 fs-16">My Profile</a>
-					  {{-- <span class="text-fade">Account settings and more</span> --}}
-				  </div>
-			  </div>
+
+				<?php 
+
+				$thestatus = App\Models\User::where('id','=',Auth::user()->id)->first();
+
+				if($thestatus->kyc_status == 0){
+
+				}else{
+
+				  ?>
+
+<div class="d-flex align-items-center mb-30">
+	<div class="me-15 bg-primary-light h-50 w-50 l-h-60 rounded text-center">
+		  <span class="icon-Library fs-24"><span class="path1"></span><span class="path2"></span></span>
+	</div>
+	<div class="d-flex flex-column fw-500">
+	  
+		<a href="{{ route('profile') }}" class="text-dark hover-primary mb-1 fs-16">My Profile</a>
+		{{-- <span class="text-fade">Account settings and more</span> --}}
+	</div>
+</div>
+				  
+				 
+				 <?php
+
+				}
+
+
+				?>		
+			  
 			  <div class="d-flex align-items-center mb-30">
 				  <div class="me-15 bg-primary-light h-50 w-50 l-h-60 rounded text-center">
 					  {{-- <span class="icon-Write fs-24"><span class="path1"></span><span class="path2"></span></span> --}}

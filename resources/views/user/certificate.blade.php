@@ -196,9 +196,11 @@
 				 </div>
 
 				 <div class="row">
-					<p style="text-align: center;margin-top: 20px;">This is to cerify that <b>{{ $company_name->business_name }}</b> has offsetted a total of <b>{{ $total_mass_emission_avoidance }}</b> unit emissions
-					on this day <b><?php echo date( "d F Y", strtotime($transaction->created_at)); ?></b>
+
+					<p style="text-align: center;margin-top: 20px;">This is to cerify that <b>{{ ucfirst($user->firstname) }}</b>&nbsp; <b>{{ ucfirst($user->lastname) }}</b> has offsetted a total of <b>{{ $total_mass_emission_avoidance }}</b> unit emissions
+						on this day <b><?php echo date( "d F Y", strtotime($transaction->created_at)); ?></b>
 					</p>
+					
 				 </div>
 
 				 <div class="row">

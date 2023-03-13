@@ -306,7 +306,7 @@
   background-color: transparent !important; }
 
 .bg-light {
-  background-color: #b6b6c4 !important; }
+  background-color: #ddddea !important; }
 
 .bg-lighter {
   background-color: #f0f3f6 !important; }
@@ -2100,11 +2100,11 @@ Theme Primary Color
     border-bottom-color: #46bc5c;
     background-color: #46bc5c; }
 .theme-primary .nav-tabs.nav-bordered .nav-link.active {
-  border-bottom-color: #46bc5c;
+  border-bottom-color: #187a56;
   background-color: transparent;
   color: #0E0E23; }
   .theme-primary .nav-tabs.nav-bordered .nav-link.active:hover, .theme-primary .nav-tabs.nav-bordered .nav-link.active:focus {
-    border-bottom-color: #46bc5c;
+    border-bottom-color: #187a56;
     color: #0E0E23; }
 .theme-primary .nav-tabs.nav-bordered .nav-item.open .nav-link {
   border-bottom-color: #46bc5c;
@@ -2291,12 +2291,12 @@ Theme Primary Color
 .theme-primary .nav > li > a:hover, .theme-primary .nav > li > a:active, .theme-primary .nav > li > a:focus {
   color: #46bc5c; }
 .theme-primary .nav-pills > li > a.active {
-  border-top-color: #46bc5c;
-  background-color: #46bc5c !important;
+  border-top-color: #187a56;
+  background-color: #187a56 !important;
   color: #ffffff; }
   .theme-primary .nav-pills > li > a.active:hover, .theme-primary .nav-pills > li > a.active:focus {
-    border-top-color: #46bc5c;
-    background-color: #46bc5c !important;
+    border-top-color: #187a56;
+    background-color: #187a56 !important;
     color: #ffffff; }
 .theme-primary .mailbox-nav .nav-pills > li > a:hover, .theme-primary .mailbox-nav .nav-pills > li > a:focus {
   border-color: #46bc5c; }
@@ -2522,11 +2522,11 @@ Theme Primary Color
 
 /*---pagination---*/
 .theme-primary .pagination li a.current {
-  border: 1px solid #46bc5c;
-  background-color: #46bc5c; }
+  border: 1px solid #187a56;
+  background-color: #187a56; }
   .theme-primary .pagination li a.current:hover {
-    border: 1px solid #46bc5c;
-    background-color: #46bc5c; }
+    border: 1px solid#187a56;
+    background-color: #187a56; }
 .theme-primary .pagination li a:hover {
   border: 1px solid #e6f0ff;
   background-color: #e6f0ff !important;
@@ -2538,11 +2538,11 @@ Theme Primary Color
     border: 1px solid #46bc5c;
     background-color: #46bc5c; }
 .theme-primary .paging_simple_numbers .pagination .paginate_button.active a {
-  background-color: #46bc5c; }
+  background-color: #187a56; }
 .theme-primary .paging_simple_numbers .pagination .paginate_button:hover a {
-  background-color: #46bc5c; }
+  background-color: #187a56; }
 .theme-primary .footable .pagination li a:hover, .theme-primary .footable .pagination li a:active, .theme-primary .footable .pagination li a.active {
-  background-color: #46bc5c; }
+  background-color: #187a56; }
 
 /*---dataTables---*/
 .theme-primary .dt-buttons .dt-button {

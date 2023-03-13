@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from investx-admin-template.multipurposethemes.com/New_InvestX-main-files/html/template/vertical-light/main/auth_register.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 14 Nov 2022 16:20:59 GMT -->
+
 <head>
   <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -172,7 +172,7 @@
 									</div> --}}
 									<div class="form-group">
 										<div class="input-group mb-3">
-											<span class="input-group-text bg-transparent"><i class="text-fade ti-user"></i></span>
+											{{-- <span class="input-group-text bg-transparent"><i class="text-fade ti-user"></i></span> --}}
 											<input type="text" name="firstname" class="form-control ps-15 bg-transparent @error('firstname') is-invalid @enderror" required placeholder="Firstname" value="{{ old('firstname') }}">
 											
 										</div>
@@ -180,7 +180,7 @@
 									</div>
 									<div class="form-group">
 										<div class="input-group mb-3">
-											<span class="input-group-text bg-transparent"><i class="text-fade ti-user"></i></span>
+											{{-- <span class="input-group-text bg-transparent"><i class="text-fade ti-user"></i></span> --}}
 											<input name="lastname" type="text" class="form-control ps-15 bg-transparent @error('lastname') is-invalid @enderror" required placeholder="Lastname" value="{{ old('lastname') }}">
 											
 										</div>
@@ -189,7 +189,7 @@
 
 									<div class="form-group">
 										<div class="input-group mb-3">
-											<span class="input-group-text bg-transparent"><i class="text-fade ti-email"></i></span>
+											{{-- <span class="input-group-text bg-transparent"><i class="text-fade ti-email"></i></span> --}}
 											<input name="email" type="email" class="form-control ps-15 bg-transparent  @error('email') is-invalid @enderror" required placeholder="Email Address" value="{{ old('email') }} ">
 											
 										</div>
@@ -198,7 +198,7 @@
 
 									<div class="form-group">
 										<div class="input-group mb-3">
-											<span class="input-group-text bg-transparent"><i class="text-fade ti-lock"></i></span>
+											{{-- <span class="input-group-text bg-transparent"><i class="text-fade ti-lock"></i></span> --}}
 											<input name="password" type="password" class="form-control ps-15 bg-transparent @error('password') is-invalid @enderror" placeholder="Password" required>
 											
 										</div>
@@ -207,7 +207,7 @@
 
 									<div class="form-group">
 										<div class="input-group mb-3">
-											<span class="input-group-text bg-transparent"><i class="text-fade ti-lock"></i></span>
+											{{-- <span class="input-group-text bg-transparent"><i class="text-fade ti-lock"></i></span> --}}
 											<input type="password" class="form-control ps-15 bg-transparent @error('password') is-invalid @enderror" placeholder="Confirm Password" name="password_confirmation" required>
 										</div>
 										<strong style="color: #000">{{ $errors->first('password') }}</strong>

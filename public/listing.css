@@ -1,5 +1,7 @@
 #sharee{
     font-size: 11px;
+    position: relative;
+    left: 12px;
   }
 
 
@@ -8,6 +10,7 @@
     #sharee{
     font-size: 11px;
     text-align: center;
+
   }
 
 }
