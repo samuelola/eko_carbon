@@ -197,14 +197,20 @@
 	
   }
 
-  // remove duplicates
-  $aa = array_unique($sarunum);
+  //Sort the elements of the array in descending alphabetical order: 
+rsort($sarunum);
+rsort($sarutype);
 
-  // get top 5 values
-  $largest = array_slice($aa, 0, 5);
-  
+// $aa = array_unique($sarunum);
 
- 
+// print_r($aa) ;
+
+$largest = array_slice($sarunum, 0, 5);
+
+
+// $largestt = array_slice($sarutype, 0, 5);
+
+//get largetest value
 
 foreach ($largest as $val) {
 
@@ -213,8 +219,6 @@ foreach ($largest as $val) {
 	$largest_name[] = isset($check->type) ? $check->type : '';
 
 }
-
-
 
 
 // convert timestamp to date

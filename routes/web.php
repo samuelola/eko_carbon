@@ -73,7 +73,7 @@ Route::post('/createproject', 'App\Http\Controllers\KycController@createproject'
 Route::post('/updatelog', 'App\Http\Controllers\ProjectController@updatelog')->name('updatelog')->middleware('auth');
 
 Route::post('/addpreassessment', 'App\Http\Controllers\ProjectController@addpreassessment')->name('addpreassessment')->middleware('auth');
-
+Route::post('/addpreassessmentminigrid', 'App\Http\Controllers\ProjectController@addpreassessmentminigrid')->name('addpreassessmentminigrid')->middleware('auth');
 
 Route::get('/trialversion', 'App\Http\Controllers\ProjectController@trialversion')->name('trialversion');
 Route::post('/trialpreassessment', 'App\Http\Controllers\ProjectController@trialpreassessment')->name('trialpreassessment');
@@ -84,6 +84,8 @@ Route::get('/trialresult', 'App\Http\Controllers\ProjectController@trialresult')
 //certificate 
 
 Route::get('/certificate', 'App\Http\Controllers\KycController@certificate')->name('certificate')->middleware('auth');
+
+Route::get('/minigridcertificate', 'App\Http\Controllers\KycController@minigridcertificate')->name('minigridcertificate')->middleware('auth');
 
 Route::get('/adminusers', 'App\Http\Controllers\KycController@adminusers')->name('adminusers')->middleware('auth');
 Route::get('/adminbids', 'App\Http\Controllers\KycController@adminbids')->name('adminbids')->middleware('auth');
@@ -148,6 +150,8 @@ Route::post('change-password', 'App\Http\Controllers\ChangePasswordController@st
 
 Route::post('/emittcarboncar', 'App\Http\Controllers\houseHoldController@emittcarboncar')->name('emittcarboncar')->middleware('auth');
 Route::post('/emittcarbonflight', 'App\Http\Controllers\houseHoldController@emittcarbonflight')->name('emittcarbonflight')->middleware('auth');
+
+Route::post('/emittcarbonhouse1', 'App\Http\Controllers\houseHoldController@emittcarbonhouse1')->name('emittcarbonhouse1')->middleware('auth');
 
 Route::post('/procount', 'App\Http\Controllers\houseHoldController@procount')->name('procount')->middleware('auth');
 Route::get('/householdlogout', 'App\Http\Controllers\houseHoldController@householdlogout')->name('householdlogout');

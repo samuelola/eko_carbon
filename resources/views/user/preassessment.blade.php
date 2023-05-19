@@ -229,25 +229,25 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="phoneNumber1" class="form-label" style="color:#000">Watts</label>
-                                                            <input type="text" class="form-control" id="phoneNumber1" placeholder="6437 Watts"> 
+                                                            <input type="number" class="form-control" id="watts" required=""> 
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="phoneNumber1" class="form-label" style="color:#000">Number</label>
-                                                            <input type="number" class="form-control" id="phoneNumber1"> 
+                                                            <input type="number" class="form-control" id="thenumber" required=""> 
                                                         </div>
                                                     </div>
                                                 </div>
         
-                                                <div class="row" style="border-top: 1px solid #f3eeee;
+                                                {{-- <div class="row" style="border-top: 1px solid #f3eeee;
                                                 padding-top: 25px;
                                                 padding-bottom: 25px;">
                                                     <p style="margin-left:0px;"><b>Battery</b></p>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="phoneNumber1" class="form-label" style="color:#000">Capacity</label>
-                                                            <input type="text" class="form-control" id="phoneNumber1" placeholder="3.5V"> 
+                                                            <input type="number" class="form-control" id="phoneNumber1" placeholder="3.5V"> 
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -257,7 +257,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-        
+         --}}
                                                 <div class="row" style="border-top: 1px solid #f3eeee;
                                                 padding-top: 25px;
                                                 padding-bottom: 25px;">
@@ -265,18 +265,18 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="phoneNumber1" class="form-label" style="color:#000">Days</label>
-                                                            <input type="number" class="form-control" id="phoneNumber1"> 
+                                                            <input type="number" class="form-control" id="cloud" required=""> 
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    {{-- <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="phoneNumber1" class="form-label" style="color:#000">Dropbox</label>
                                                             <input type="number" class="form-control" id="phoneNumber1"> 
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
         
-                                                <div class="row" style="border-top: 1px solid #f3eeee;
+                                                {{-- <div class="row" style="border-top: 1px solid #f3eeee;
                                                 padding-top: 25px;
                                                 padding-bottom: 25px;">
                                                     <p style="margin-left: 0px;"><b>Inverter</b></p>
@@ -286,22 +286,17 @@
                                                             <input type="text" class="form-control" id="phoneNumber1" placeholder="4000KVA"> 
                                                         </div>
                                                     </div>
-                                                    {{-- <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="phoneNumber1" class="form-label" style="color:#000">Plastics LDPE(kg)</label>
-                                                            <input type="number" class="form-control" id="phoneNumber1"> 
-                                                        </div>
-                                                    </div> --}}
-                                                </div>
+                                                    
+                                                </div> --}}
         
                                                 <div class="row" style="border-top: 1px solid #f3eeee;
                                                 padding-top: 25px;
                                                 padding-bottom: 25px;">
-                                                    <p style="margin-left: 0px;"><b>HH Beneficiary</b></p>
+                                                    <p style="margin-left: 0px;"><b>Household Beneficiary</b></p>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="phoneNumber1" class="form-label" style="color:#000">Number(rank)</label>
-                                                            <input type="number" class="form-control" id="phoneNumber1"> 
+                                                            <label for="phoneNumber1" class="form-label" style="color:#000">Number</label>
+                                                            <input type="number" class="form-control" id="rank" required=""> 
                                                         </div>
                                                     </div>
                                                     {{-- <div class="col-md-6">
@@ -318,18 +313,23 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="phoneNumber1" class="form-label" style="color:#000">Source of power</label>
-                                                            <input type="number" class="form-control" id="phoneNumber1" placeholder="fossil"> 
+                                                            <select class="form-control" id="sourcepw" required="">
+                                                                <option value="">--select--</option>
+                                                                <option value="0.93">Diesel Generator</option>
+                                                                <option value="0.26">Petrol Generator</option>
+                                                                <option value="0.12">Gas Generator</option>
+                                                            </select> 
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="phoneNumber1" class="form-label" style="color:#000">HH Cover</label>
-                                                            <input type="number" class="form-control" id="phoneNumber1" placeholder="Number"> 
+                                                            <label for="phoneNumber1" class="form-label" style="color:#000">KwHour Per Day</label>
+                                                            <input type="number" class="form-control" id="kwhour" required=""> 
                                                         </div>
                                                     </div>
                                                 </div>
         
-                                                <div class="row" style="padding-bottom: 50px;">
+                                                {{-- <div class="row" style="padding-bottom: 50px;">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="phoneNumber1" class="form-label" style="color:#000">Installation Emission</label>
@@ -337,14 +337,14 @@
                                                         </div>
                                                     </div>
                                                     
-                                                </div>
+                                                </div> --}}
         
                                               
         
                                                 <div class="mb-3" style="float: right;">
                                                     <button type="button" onclick="myFunction2()" class="btn btn-secondary-light" style="border: 1px solid #000;">Cancel</button>
-                                                    <button type="button" onclick="makePayment()" class="btn btn-primary">Pay $50 to Calculate</button>
-                                                    
+                                                    {{-- <button type="button" onclick="makePayment()" class="btn btn-primary">Pay $50 to Calculate</button> --}}
+                                                    <button type="button" id="paymme1" class="btn btn-primary">Pay $50 to Calculate</button>
                                                   </div>
         
                                                 
@@ -475,6 +475,95 @@
 
 
 @section('script')
+
+
+<script>
+    $("document").ready(function(){
+        $("#paymme1").click(function(){
+     
+          var amt1 = 50*100 ;
+         
+          var handler = PaystackPop.setup({
+          
+          key: 'pk_test_b8df42429edbc40a8fd89918e2d1cc35f84dc171',
+          
+          email: '<?php echo $useremail; ?>',
+         
+          amount: amt1,
+          currency: "NGN",
+          ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+          firstname: '<?php echo $userfirstname; ?>',
+          lastname: '<?php echo $userlastname; ?>',
+          // label: "Optional string that replaces customer email"
+
+          metadata: {
+             custom_fields: [
+                {
+                    display_name: "Mobile Number",
+                    variable_name: "mobile_number",
+                    value: "+2348012345678"
+                }
+             ]
+          },
+          callback: function(response){
+              
+             var status = response.status;
+             var approved = response.message;
+             
+             var cash =  50;
+
+             var watts = $("#watts").val();
+            var thenumber = $("#thenumber").val();
+            var cloud = $("#cloud").val();
+            var rank = $("#rank").val();
+            var sourcepw = $("#sourcepw").val();
+            var kwhour = $("#kwhour").val();
+            var user_id = $("#user_id").val();
+
+            if(status == 'success'){
+
+                $.ajax({
+
+                    type: "post",
+                    url: '/addpreassessmentminigrid',
+                    data: {
+                        amount:cash,
+                        _token: $("#csrf").val(),
+                        watts:watts,
+                        thenumber:thenumber,
+                        cloud:cloud,
+                        rank:rank,
+                        sourcepw:sourcepw,
+                        kwhour:kwhour, 
+                        user_id:user_id,
+                    },
+
+                    success: function(data){
+                    console.log(data);
+
+                    alert(data);
+
+                    window.location = "/minigridcertificate";
+                    
+                    },error: function(data){
+                    console.log(data); 
+                    }
+
+                    });
+                }
+             
+              
+          },
+
+
+          onClose: function(){
+              alert('window closed');
+          }
+        });
+        handler.openIframe();
+        });
+    });
+</script>
 
 
 <script>

@@ -15,7 +15,7 @@ use Carbon\Carbon;
 use App\Models\OffsettersTransaction;
 use App\Models\Project_type;
 use App\Models\Setting;
-
+use App\Models\Minigrid;
 
 
 class ProjectController extends Controller
@@ -35,12 +35,100 @@ class ProjectController extends Controller
     public function preassessment(Request $request){
        
        $theuser = User::where('id',Auth::user()->id)->first(); 
+       
        return view('user.preassessment',compact('theuser'));
     }
 
     public function trialversion(Request $request){
 
         return view('user.trialversion');
+    }
+
+    public function addpreassessmentminigrid(Request $request){
+
+             // Available alpha caracters
+    $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+    // generate a pin based on 2 * 7 digits + a random character
+    $pin = mt_rand(1000000, 9999999)
+        . mt_rand(1000000, 9999999)
+        . $characters[rand(0, strlen($characters) - 1)];
+
+    // shuffle the result
+    $transactionid = str_shuffle($pin);
+  
+    $dt = date('Y-m-d H:i:s');
+    $thenow = Now(); 
+
+     $payment_type = 'Payment for Minigrid Preassessment';
+     //books(kg)
+
+     $watts = $request->watts;
+     $thenumber = $request->thenumber;
+     $cloud_days = $request->cloud;
+     $rank = $request->rank;
+     $sourcepw = $request->sourcepw;
+     $kwhour = $request->kwhour;
+     $user_id = $request->user_id;
+     $watts_value = 0.008;
+
+     $watts_result = $watts*$thenumber*$watts_value;
+     $newresult1 = $cloud_days*$watts_result*$rank;
+
+     $newresult2 = $sourcepw*$kwhour;
+
+     $newresult3 = $newresult1+$newresult2;
+
+     Minigrid::create([
+
+        'watts_value'=>$watts_value,
+        'watts_capacity'=>$watts,
+        'watts_number'=>$thenumber,
+        'watts_result'=>$watts_result,
+        'cloud_days'=>$cloud_days,
+        'householdbenefit'=>$rank,
+        'source_of_power_value'=>$sourcepw,
+        'allemission_result'=>$newresult3,
+        'user_id'=>$user_id,
+        'thedate'=>$thenow
+        
+    ]);
+
+    $cert_id = chunk_split($transactionid, 3, '-');
+    // $repl = preg_replace('/-[^-]*$/', '', $transactionid);
+
+    function removee($str){
+
+        $desired_result="";
+
+        $pieces = explode("-",$str);
+        $count = count($pieces);
+    
+        for ($x = 0; $x <= $count - 2; $x++) {
+           $desired_result .= $pieces[$x].'-';
+        } 
+        $desired_result = substr($desired_result, 0, -1);
+    
+        return $desired_result;
+    }
+
+    $my_result = removee($cert_id);
+
+    Transaction::create([
+        'user_id'=>$user_id,
+        'amount'=>$request->amount,
+        'transaction_id'=>$transactionid,
+        'payment_type'=> $payment_type,
+        'cert_id' => $my_result,
+        'created_at'=>$dt,
+        'updated_at'=>$dt
+    ]);
+
+    
+
+    return "Preassessment Successfully!";
+
+
     }
 
     public function addpreassessment(Request $request){

@@ -20,6 +20,7 @@ use App\Models\Project_type;
 use App\Models\OffsettersTransaction;
 use App\Models\Rolepermission;
 use App\Models\Setting;
+use App\Models\Minigrid;
 
 class KycController extends Controller
 {
@@ -412,15 +413,48 @@ class KycController extends Controller
 
 
     public function certificate(Request $request){
+         
+        // note use the code below to get all cert for first preassement
+        // User::orderBy('created_at', 'desc')->first();
         
         $id = Auth::user()->id;
         $user  = User::where('id','=',$id)->first();
-        $transaction = Transaction::where('user_id',$id)->first();
-        $thepreassements = Assessment::where('user_id',$id)->get();
-        $total_mass_recycled = Assessment::sum('mass_recycled');
-        $total_mass_emission_avoidance = Assessment::sum('emission_avoidance');
+        $transaction = Transaction::where('user_id',$id)->orderBy('id' , 'desc')->first();
+        // $thepreassements = Assessment::where('user_id',$id)->get();
+        $thepreassements = Assessment::where('user_id',$id)->orderBy('created_at' , 'desc')->get()->unique('recycle_type');
+        $total_mass_recycled = Assessment::where('user_id',$id)->orderBy('created_at' , 'desc')->get()->unique('recycle_type')->sum('mass_recycled');
+        $total_mass_emission_avoidance = Assessment::where('user_id',$id)->orderBy('created_at' , 'desc')->get()->unique('recycle_type')->sum('emission_avoidance');
         $company_name = KYC::where('user_id',$id)->first();
         return view('user.certificate',compact('user','transaction','thepreassements','total_mass_recycled','total_mass_emission_avoidance','company_name'));
+    }
+
+
+    //old code
+
+    // public function certificate(Request $request){
+         
+        
+        
+    //     $id = Auth::user()->id;
+    //     $user  = User::where('id','=',$id)->first();
+    //     $transaction = Transaction::where('user_id',$id)->first();
+    //     // $thepreassements = Assessment::where('user_id',$id)->get();
+    //     $thepreassements = Assessment::where('user_id',$id)->orderBy('created_at' , 'desc')->get()->unique('recycle_type');;
+    //     $total_mass_recycled = Assessment::sum('mass_recycled');
+    //     $total_mass_emission_avoidance = Assessment::sum('emission_avoidance');
+    //     $company_name = KYC::where('user_id',$id)->first();
+    //     return view('user.certificate',compact('user','transaction','thepreassements','total_mass_recycled','total_mass_emission_avoidance','company_name'));
+    // }
+
+
+    public function minigridcertificate(Request $request){
+        
+        $id = Auth::user()->id;
+        $user  = User::where('id','=',$id)->first();
+        $total_mass_emission_avoidance = Minigrid::where('user_id',$id)->orderBy('created_at', 'desc')->first();
+        $transaction = Transaction::where('user_id',$id)->orderBy('created_at', 'desc')->first();
+        
+        return view('user.minigridcertificate',compact('user','transaction','total_mass_emission_avoidance'));
     }
 
 

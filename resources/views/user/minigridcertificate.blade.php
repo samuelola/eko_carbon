@@ -40,7 +40,7 @@
 <body class="hold-transition light-skin sidebar-mini theme-primary fixed">
 	
 <div class="wrapper">
-	<div id="loader"></div>
+	{{-- <div id="loader"></div> --}}
 
     <header class="main-header">
         <div class="d-flex align-items-center logo-box justify-content-start" style="background-color:#187a56">	
@@ -161,33 +161,23 @@
 							
 							<div class="card-body">
 								<table class="table table-striped table-sm">
-									<thead>
+									{{-- <thead>
 										<tr>
-											<th>DISPOSABLES</th>
-											<th>MASS RECYCLED  (Kilograms)</th>
-											<th>Tonnes CO<sub>2</sub>e</th>
+											<th>Total Emission</th>
+											<th>{{ $total_mass_emission_avoidance->allemission_result }}</th>
+											
 											
 										</tr>
-									</thead>
+									</thead> --}}
 									<tbody>
-										@foreach($thepreassements as $thepreassement)
-                                           
+
 										<tr>
-											<td>{{ $thepreassement->recycle_type }}</td>
-											<td>{{ $thepreassement->mass_recycled }}</td>
-											<td>{{ $thepreassement->emission_avoidance }}</td>
-											
-											
-											
+											<td><b>Total Emission</b></td>
+											<td><b>{{ $total_mass_emission_avoidance->allemission_result }}<b></td>
 										</tr>
-                                       
-										@endforeach
 										
-										<tr style="background-color: transparent;border-top: 1px solid;">
-											<th>Total</th>
-											<th>{{ $total_mass_recycled }}</th>
-											<th>{{ $total_mass_emission_avoidance }}</th>
-										</tr>
+										
+										
 									</tbody>
 								</table>
 							</div>
@@ -197,7 +187,7 @@
 
 				 <div class="row">
 
-					<p style="text-align: center;margin-top: 20px;">This is to cerify that <b>{{ ucfirst($user->firstname) }}</b>&nbsp; <b>{{ ucfirst($user->lastname) }}</b> has offsetted a total of <b>{{ $total_mass_emission_avoidance }}</b> unit emissions
+					<p style="text-align: center;margin-top: 20px;">This is to cerify that <b>{{ ucfirst($user->firstname) }}</b>&nbsp; <b>{{ ucfirst($user->lastname) }}</b> has offsetted a total of <b>{{ $total_mass_emission_avoidance->allemission_result }}</b> unit emissions
 						on this day <b><?php echo date( "d F Y", strtotime($transaction->created_at)); ?></b>
 					</p>
 					
@@ -222,19 +212,9 @@
 		</div>  
 		<div class="row">
 			<div class="col-md-4">
-				<?php 
-				   if(Auth::user()->role == 'lister'){
-                      
-					?><a id="rapdownn" href="{{ route('preassessment') }}" class="btn btn-primary">Back</a><?php
 
-				   }else{
-
-					?><a id="rapdownn" href="{{ route('listing') }}" class="btn btn-primary">Back</a><?php
-                      
-				   }	
-					
-				?>
 				
+				<a id="rapdownn" href="{{ route('preassessment') }}" class="btn btn-primary">Back</a>
 				
 			</div>
 			<div class="col-md-4"></div>
@@ -290,13 +270,13 @@
 				$theimagee = App\Models\KYC::where('user_id','=',$user->id)->first();
 
 			  ?>
-				{{-- @if(empty($theimagee->image))
+				@if(empty($theimagee->image))
 				<div class=""><img src="/ava.png" alt="user" class="rounded bg-primary-light w-150" width="100"></div>
 				
 				@else
 				<div class=""><img src="/{{ $theimagee->image }}" alt="user" class="rounded bg-primary-light w-150" width="100"></div>
 				
-				@endif --}}
+				@endif
 				  <div class="ps-20">
 					  <h5 class="mb-0">{{ ucfirst($user->firstname) }}&nbsp;{{ ucfirst($user->lastname) }}</h5>
 					  <p class="my-5 text-fade">{{ ucfirst($user->role) }}</p>

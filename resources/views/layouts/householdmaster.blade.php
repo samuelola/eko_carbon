@@ -34,7 +34,59 @@
 
 <style>
 
-	
+.tooltipp-container {
+  margin-block: 1rem;
+}
+
+.tooltipp {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltipp a {
+  color: #1c1a1a;
+  text-decoration: none;
+  opacity: .8;
+}
+
+.tooltipp a:hover {
+  opacity: 1;
+}
+
+.tooltipp .tooltiptext {
+  visibility: hidden;
+  width: 300px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 1;
+  transition: opacity 0.3s;
+  font-size: 12px;
+}
+
+.tooltipp .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltipp:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}  
+
 .tooltip {
   position: relative;
   display: inline-block;
@@ -153,10 +205,11 @@ color:#fff !important;
 
   <!-- Side panel -->   
   <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+  
   <script src="{{ asset('/htmly/template/vertical-light/src/js/vendors.min.js') }}"></script>
 	<script src="{{ asset('/htmly/template/vertical-light/src/js/pages/chat-popup.js') }}"></script>
     <script src="{{ asset('/htmly/assets/icons/feather-icons/feather.min.js') }}"></script>
-		
+	
 	<script src="{{ asset('/htmly/assets/vendor_components/apexcharts-bundle/dist/apexcharts.js') }}"></script>
 	
 	<script src="{{ asset('/htmly/template/vertical-light/src/js/vendors.min.js') }}"></script>

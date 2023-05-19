@@ -241,6 +241,54 @@ class houseHoldController extends Controller
         
     }
 
+    public function emittcarbonhouse1(Request $request){
+        
+        //car
+        $household1email = $request->household1email; 
+        $emissionfactor = $request->emissionfactor;  
+        $user_id = Auth::user()->id;
+        $nn = NOW();
+
+        if(!empty($emissionfactor)){
+
+            $result =  $emissionfactor;
+            
+
+            DB::table('emissioncal')->insert(
+                [ 
+                    'user_id'=>$user_id,
+                    
+                    'emissionfactor'=>$emissionfactor,
+                    'total' => $result,
+                    'type'=>'Household',
+                    'created_at'=> $nn,
+                    'updated_at'=> $nn,
+                    ]
+            );
+    
+
+        }else{
+
+            // $distance = 0;
+            // $emissionfactor = $emissionfactor;
+            // $result =  $distance*$emissionfactor;
+            // $total = $result;
+            // Householdcal::create([
+            //     'user_id'=>$user_id,
+            //     'distance'=>$distance,
+            //     'emissionfactor'=>$emissionfactor,
+            //     'total' => $total
+                
+            // ]);
+
+        }
+
+
+        return "Your carbon emission for Household is  ".$emissionfactor. " Tonnes";
+        
+        
+    }
+
     public function emittcarbonflight(Request $request){
 
         $flightdistance = $request->flightdistance;
