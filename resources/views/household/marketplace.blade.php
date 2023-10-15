@@ -403,7 +403,7 @@ console.log(unit);
                   type: 'POST',
                   data:{projectId:projectId},
                   success: function (res) {
-
+                  
                     console.log(res);
                     
 
@@ -1017,6 +1017,64 @@ $(document).on('click', '.show-more', function(){
 
     
 });
+</script>
+
+<script>
+    apikey = '567ff21a30042f30b342aca35572acbc';
+    url = 'https://gnews.io/api/v4/search?q=example&lang=en&country=us&max=10&apikey=' + apikey;
+
+    fetch(url)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        articles = data.articles;
+
+        console.log(articles);
+
+        let viewArticles = '';
+
+        for (let i = 0; i < articles.length; i++) {
+
+          var gg = articles[i]['description'];
+
+          String.prototype.trunc= function (length) {
+          return this.length>length ? this.substring(0, length) + '...' : this;
+          };
+
+          console.log(gg.trunc(10));
+          
+          //viewArticles += articles[i]['title'] + "<br>";
+
+          viewArticles+=`
+            
+            <div class="col digitalBtn">
+              <div class="card shadow-sm">
+                <img src="`+articles[i]['image']+`" alt="image"  class="bd-placeholder-img card-img-top" style="height: 240px;">
+    
+                <div class="card-body py-4" style="height:250px">
+                    <h3 class="fw-bolder" style="font-size: larger;">`+articles[i]['title']+`</h3>
+                  <p class="card-text lh-lg ">`+gg.trunc(80)+`</p>
+                  
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <img src="Images/arrowvector.svg" alt="">
+                      <a href="`+articles[i]['url']+`" target="_blank" class="text-danger text-decoration-none ">Read more</a>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          `;
+          
+        }
+
+        document.getElementById("demo").innerHTML = viewArticles;
+
+  
+  });
 </script>
 
 
