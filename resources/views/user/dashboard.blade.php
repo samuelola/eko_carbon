@@ -23,57 +23,62 @@
 								  </div>
 								  <p style="margin-top: 10px;font-size: 12px;" class="mb-0">Total Views</p>
 								  <div>
-									  <h1 style="font-size: 18px;" class="mb-0 fw-600">{{ $countprojectview }}<small class="ms-10 me-5 text-success"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+									  {{-- <h1 style="font-size: 18px;" class="mb-0 fw-600">{{isset($countprojectview) ? $countprojectview : '0' }}<small class="ms-10 me-5 text-success"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
 										<path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
-									  </svg> <span class="text-success">1.42%</span></small></h1>
+									  </svg> <span class="text-success">1.42%</span></small></h1> --}}
+
+									  <h1 style="font-size: 18px;" class="mb-0 fw-600">{{isset($countprojectview) ? $countprojectview : '0' }}</h1>
 								  </div>
 							  </div>
 
-							 
+							    <?php 
+
 								
-								@foreach ($theprojects as $theproject)
+								    foreach ($theprojects as $theproject){
 
-								<div class="col-lg-3 col-12 be-1">
-									<div class="d-flex justify-content-between align-items-center">
-										
-										
-										{{-- <p class="mb-0 text-success">6210</p> --}}
-									</div>
-									<p style="margin-top: 10px;font-size: 12px;" class="mb-0">{{ $theproject->project_name }} views</p>
-									<div>
-										<h1 style="font-size: 18px;" class="mb-0 fw-600">{{ $theproject->theprojectview }}<small class="ms-10 me-5 text-success"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
-										  <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
-										</svg> <span class="text-success">
+										?>
 
-									    <!--all views count-->
+										<div class="col-lg-3 col-12 be-1">
+											<div class="d-flex justify-content-between align-items-center">
+												
+												
+												
+											</div>
+											<p style="margin-top: 10px;font-size: 12px;" class="mb-0">{{ isset($theproject->project_name) ? $theproject->project_name : '' }} views</p>
+											<div>
+												<h1 style="font-size: 18px;" class="mb-0 fw-600">{{ isset($theproject->theprojectview) ? $theproject->theprojectview : '' }}<small class="ms-10 me-5 text-success"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+												<path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+												</svg> <span class="text-success">
+
+												 <?php 
+													
+													$sumprojects = App\Models\Project::sum('theprojectview');
+
+														if($sumprojects > 0){
+
+															$each_views = $theproject->theprojectview;
+														$total_views = $sumprojects;
+
+														$percentage_views = ($each_views/$total_views)*100;
+														echo round($percentage_views,2)."%";
+
+														}else{
+															
+
+														}
+												 ?>
+												
+												
+												</span></small></h1>
+											</div>
+										</div>
 										
 										<?php
 
-                                           $sumprojects = App\Models\Project::sum('theprojectview');
-
-										   if($sumprojects > 0){
-
-											$each_views = $theproject->theprojectview;
-										   $total_views = $sumprojects;
-
-										   $percentage_views = ($each_views/$total_views)*100;
-										   echo round($percentage_views,2)."%";
-
-										   }else{
-
-										   }
-
-										  
-
-										?>
-											
-										 
-										
-										</span></small></h1>
-									</div>
-								</div>
-									
-								@endforeach
+									}
+								?>
+								
+								
 
 							  
 							  
@@ -191,6 +196,8 @@
 									@php
                                     $sn = 0;
 									@endphp
+
+									@if(!empty($offsetterspayments))
 									@foreach ($offsetterspayments as $val)
 									<tr>
 										<th scope="row">{{ $sn+=1; }}</th>
@@ -201,7 +208,9 @@
 										<td>{{ Carbon\Carbon::parse($val->created_at)->format('M j, Y ')}}</td>
 									  </tr>
 									@endforeach
-								  
+								  @else
+
+								  @endif
 								 
 								</tbody>	
 							  </table>
@@ -283,6 +292,8 @@
 
 						  @endforeach
 
+						 
+
 							
 
 							
@@ -330,19 +341,44 @@
 <?php
 
 		    
-                 
-				foreach($offsetterspaymentsts as $li){
+                
 
-				$woo =  $li->offsetters_amount;
-				$wooname = $li->project_name;
 
-				// echo "['$wooname'" . "," . " $woo],";
+					foreach($offsetterspaymentsts as $li){
+
+					// $woo =  $li->offsetters_amount;
+					$woo =  $li->offsetters_amount;
+					$wooname = $li->project_name;
+
+					// echo "['$wooname'" . "," . " $woo],";
+
+
+					$sar[] = $wooname;
+					$jid[] = $woo;
+
+					}
+
+
+					foreach($offsetterspaymentsts as $li){
+
+					// $woo =  $li->offsetters_amount;
+
+					$wooa =  $li->carbon_credit;
+					$woob =  $li->tonnes;
+					$woo =  $wooa-$woob;
+					$wooname = $li->project_name;
+
+					
+
+
+					$sard[] = $wooname;
+					$jidd[] = $woo;
+
+					}
+
 
 				
-                  $sar[] = $wooname;
-				  $jid[] = $woo;
 				
-				}
 
 
 		
@@ -355,10 +391,10 @@
 	new Chart(ctx, {
 	  type: 'bar',
 	  data: {
-		labels: <?php  echo  json_encode($sar);?>,
+		labels: <?php  echo  json_encode(isset($sar) ? $sar : 0);?>,
 		datasets: [{
 		  label: 'offsets',
-		  data: <?php  echo  json_encode($jid);?>,
+		  data: <?php  echo  json_encode(isset($jid) ? $jid : 0);?>,
 		  borderWidth: 1,
 		  
 		}]
@@ -389,10 +425,10 @@
   new Chart(ctx1, {
 	  type: 'doughnut',
 	  data: {
-		labels: <?php  echo  json_encode($sar);?>,
+		labels: <?php  echo  json_encode(isset($sard) ? $sard : 0);?>,
 		datasets: [{
 		  label: 'offsets',
-		  data: <?php  echo  json_encode($jid);?>,
+		  data: <?php  echo  json_encode(isset($jidd) ? $jidd : 0);?>,
 		  borderWidth: 1,
 		  
 		}]

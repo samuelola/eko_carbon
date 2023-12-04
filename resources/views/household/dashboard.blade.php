@@ -189,6 +189,8 @@
 
 <?php
 
+  $sarunum = [];
+  $saratime = [];
   foreach ($topfiveemissions as $value) {
 
 	$sarunum[] = isset($value->total) ? $value->total : '';
@@ -241,7 +243,7 @@ foreach ($saratime as $vall) {
 ?>
 
 <script>
-    var dateArrayJs = <?php echo json_encode($sa) ?>;
+    var dateArrayJs = <?php echo json_encode(isset($sa) ? $sa : '') ?>;
 
 	// console.log(dateArrayJs);
 	var dateChartJs = dateArrayJs.map((day,index)=>{
@@ -282,10 +284,10 @@ foreach ($saratime as $vall) {
 	new Chart(ctx, {
 	  type: 'doughnut',
 	  data: {
-		labels:  <?php  echo  json_encode($largest_name);?>,
+		labels:  <?php  echo  json_encode(isset($largest_name) ? $largest_name : '');?>,
 		datasets: [{
 		  label: 'Emissions',
-		  data: <?php  echo  json_encode($largest);?>,
+		  data: <?php  echo  json_encode(isset($largest)? $largest : '');?>,
 		  borderWidth: 1
 		}]
 	  },

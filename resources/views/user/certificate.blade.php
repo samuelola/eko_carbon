@@ -11,7 +11,7 @@
     <meta name="author" content="">
     <link rel="icon" href="">
 	<meta name="csrf-token" content="{{ csrf_token() }}" />
-    <title>Eko Carbon | KYC </title>
+    <title>Eko Carbon | Certificate </title>
   
 	<!-- Vendors Style-->
 	<link rel="stylesheet" href="{{ asset('/html/template/vertical-light/src/css/vendors_css.css') }}">
@@ -40,7 +40,7 @@
 <body class="hold-transition light-skin sidebar-mini theme-primary fixed">
 	
 <div class="wrapper">
-	<div id="loader"></div>
+	{{-- <div id="loader"></div> --}}
 
     <header class="main-header">
         <div class="d-flex align-items-center logo-box justify-content-start" style="background-color:#187a56">	
@@ -76,13 +76,13 @@
           <div class="navbar-custom-menu r-side">
             <ul class="nav navbar-nav">
                 <li class="btn-group d-md-inline-flex d-none">
-                              <label class="switch">
+                              {{-- <label class="switch">
                                   <span class="waves-effect skin-toggle waves-light">
                                         <input type="checkbox" data-mainsidebarskin="toggle" id="toggle_left_sidebar_skin">
                                         <span class="switch-on"><i data-feather="moon"></i></span>
                                         <span class="switch-off"><i data-feather="sun"></i></span>
                                     </span>
-                                </label>
+                                </label> --}}
                 </li>
                
                 
@@ -197,7 +197,7 @@
 
 				 <div class="row">
 
-					<p style="text-align: center;margin-top: 20px;">This is to cerify that <b>{{ ucfirst($user->firstname) }}</b>&nbsp; <b>{{ ucfirst($user->lastname) }}</b> has offsetted a total of <b>{{ $total_mass_emission_avoidance }}</b> unit emissions
+					<p style="text-align:left;margin-top: 20px;">This is to cerify that <b>{{ ucfirst($user->firstname) }}</b>&nbsp; <b>{{ ucfirst($user->lastname) }}</b> has offsetted a total of <b>{{ $total_mass_emission_avoidance }}</b> unit emissions
 						on this day <b><?php echo date( "d F Y", strtotime($transaction->created_at)); ?></b>
 					</p>
 					

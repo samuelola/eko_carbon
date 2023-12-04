@@ -1,7 +1,7 @@
-@extends('layouts.householdmaster')
+@extends('layouts.companymaster')
 
 @section('title')
-    | Dashboard
+    | Carbon Emission
 @endsection
 
 @section('content')

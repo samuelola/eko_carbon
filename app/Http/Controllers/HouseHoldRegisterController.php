@@ -49,7 +49,7 @@ class HouseHoldRegisterController extends Controller
         // Auth::login($user);
 
         // $flasher->addSuccess('Authentication is successfully!');
-        return redirect()->route('householdlogin');  
+        return redirect()->route('householdsignin');  
 
     }
 

@@ -1,4 +1,4 @@
-@extends('layouts.householdmaster')
+@extends('layouts.planmaster')
 
 @section('title')
     | Dashboard

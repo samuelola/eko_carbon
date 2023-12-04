@@ -102,9 +102,9 @@
         <ul class="nav navbar-nav">
 						<li class="btn-group d-md-inline-flex d-none">
 						  <label class="switch">
-                            <a href="{{ route('householdtrial') }}" class="btn btn-success" style="background-color: #3e9164;
+                            {{-- <a href="{{ route('householdtrial') }}" class="btn btn-success" style="background-color: #3e9164;
                             border-color: #3e9164;
-                            color: #ffffff;">Try our Calculator</a>
+                            color: #ffffff;">Try our Calculator</a> --}}
 							{{-- <span class="badge text-bg-warning">Warning</span> --}}
 							{{-- <marquee width="100%" direction="left" scrollamount="2" style="margin-left: -80px;">Click Complete your KYC </marquee> --}}
 

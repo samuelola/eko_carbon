@@ -53,11 +53,11 @@
 
 							
 							
-							  <span class="waves-effect skin-toggle waves-light">
+							  {{-- <span class="waves-effect skin-toggle waves-light">
 									<input type="checkbox" data-mainsidebarskin="toggle" id="toggle_left_sidebar_skin">
 									<span class="switch-on"><i data-feather="moon"></i></span>
 									<span class="switch-off"><i data-feather="sun"></i></span>
-								</span>
+								</span> --}}
 							</label>
             </li>
 			<!--<li class="dropdown notifications-menu btn-group ">

@@ -199,8 +199,8 @@
                             <div class="text-center">
                                 
                                 <div style="padding-top:40px;padding-left:40px;padding-right:40px;">
-                                    <div class="col-12 text-center">
-                                        {{-- <button type="submit" class="btn btn-default w-p100">Sign Up with Google</button> --}}
+                                    {{-- <div class="col-12 text-center">
+                                        <button type="submit" class="btn btn-default w-p100">Sign Up with Google</button>
 
 										<a href="{{ url('auth/google') }}" class="btn btn-default w-p100">Sign Up with Google</a>
 
@@ -208,11 +208,14 @@
                                             position: relative;
                                             top: -30px;
                                             left: -100px;" src="/html/images/downloadd.png" alt=""></span>
-                                    </div>	
+                                    </div>	 --}}
                                 </div>
                                 {{-- <p class="text-fade">- or -</p> --}}
-								<div class="separator separator-content my-14">
+								{{-- <div class="separator separator-content my-14">
 									<span class="w-125px text-gray-500 fw-semibold fs-7">Or</span>
+								</div> --}}
+								<div class="my-14">
+									{{-- <span class="w-125px text-gray-500 fw-semibold fs-7">Or</span> --}}
 								</div>
                               </div>
 							<div style="padding-bottom:40px;padding-left:40px;padding-right:40px;">

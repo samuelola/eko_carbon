@@ -1583,8 +1583,12 @@ $payment_type = 'Payment for Preassessment';
         //  $mypreviewproject = Project::where('id',$id)->update(['theprojectview'=>$preview->theprojectview+1]);
         $factor = Setting::where('id',1)->first();
         $totalcredit = Project::where('id',$id)->first();
+
+        $total_carbon_unitr = OffsettersTransaction::where('owner_id',$preview->user_id)->where('project_id',$id)->sum('unit');
         
-         return view('user.projectview',compact('preview','factor','totalcredit','offsetterspayments','allprojects','offsetterspayment','total_offsetbids_user_project'));
+         return view('user.projectview',compact('preview','total_carbon_unitr','factor','totalcredit','offsetterspayments','allprojects','offsetterspayment','total_offsetbids_user_project'));
+
+        
      }
 
 

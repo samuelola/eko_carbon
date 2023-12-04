@@ -69,13 +69,13 @@
       <div class="navbar-custom-menu r-side">
         <ul class="nav navbar-nav">
 			<li class="btn-group d-md-inline-flex d-none">
-						  <label class="switch">
+						  {{-- <label class="switch">
 							  <span class="waves-effect skin-toggle waves-light">
 									<input type="checkbox" data-mainsidebarskin="toggle" id="toggle_left_sidebar_skin">
 									<span class="switch-on"><i data-feather="moon"></i></span>
 									<span class="switch-off"><i data-feather="sun"></i></span>
 								</span>
-							</label>
+							</label> --}}
             </li>
 			<!--<li class="dropdown notifications-menu btn-group ">
 				<a href="#" class="waves-effect waves-light btn-primary-light svg-bt-icon" data-bs-toggle="dropdown" title="Notifications">

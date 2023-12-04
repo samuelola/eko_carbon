@@ -1,7 +1,7 @@
 @extends('layouts.adminmaster')
 
 @section('title')
-    | Roles
+    | Settings
 @endsection
 
 @section('content')
@@ -331,7 +331,7 @@ $mypermissionr = App\Models\Rolepermission::where('role',Auth::user()->role)->fi
                                             
                                             <form action="">
                                                 <div class="form-group">
-                                                    <label for="">Annual Emission Factor:</label>
+                                                    <label for="">Add Annual Emission Factor:</label>
     
                                                     <input type="number" class="form-control" id="factor">
                                                 </div>

@@ -170,3 +170,5 @@ Route::get('/companylogout', 'App\Http\Controllers\companyController@companylogo
 
 Route::post('/factor', 'App\Http\Controllers\KycController@factor')->name('factor')->middleware('auth');
 Route::post('/updatefactor', 'App\Http\Controllers\KycController@updatefactor')->name('updatefactor')->middleware('auth');
+
+Route::post('/verifybank', 'App\Http\Controllers\KycController@verifybank')->name('verifybank')->middleware('auth');

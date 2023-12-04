@@ -88,10 +88,26 @@
 				 
 				</li>
 				<li>
-					<a class="{{ (request()->routeIs('profile')) ? 'myactive' : '' }}" href="{{ route('profile') }}">
-					  <i data-feather="user"></i>
-					  <span>Profile</span>
-					</a>
+					<?php 
+					  if($check->kyc_status == 0){
+
+
+					  }	else{
+
+						?>
+						   <a class="{{ (request()->routeIs('profile')) ? 'myactive' : '' }}" href="{{ route('profile') }}">
+							<i data-feather="user"></i>
+							<span>Profile</span>
+						  </a>
+						
+						<?php
+
+
+					  }
+						
+						
+				    ?>
+					
 				</li>
 				{{-- <li>
 					<a href="{{ route('offsetbids') }}">
@@ -111,66 +127,139 @@
 				  </a>
 				</li>
 
+				<?php 
+
+                
+				
+				$mypermissionr = App\Models\Rolepermission::where('role',Auth::user()->role)->first();
+				   
+				if(Auth::user()->role === 'lister'){
+
+					if($mypermissionr->market == 'true'){
+
+							?>
+
+								<li>
+									<a class="{{ (request()->routeIs('marketplace')) ? 'myactive' : '' }}" href="{{ route('marketplace') }}">
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1" class="bi bi-box-seam" viewBox="0 0 16 16">
+											<path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2l-2.218-.887zm3.564 1.426L5.596 5 8 5.961 14.154 3.5l-2.404-.961zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z"/>
+										</svg>
+									<span>Market Place</span>
+									</a>
+								</li>
+
+							<?php
+
+
+							}else{
+
+
+							}
+
+											}else{
+
+
+											}
+
+				   
+				
+				
+				?>
+
+				
+
                 <li class="treeview">
-				  <a href="#">
+
+					<?php 
+					  if($check->kyc_status == 0){
+
+
+					  }	else{
+
+						?>
+
+<a href="#">
 					
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-					<span>Projects</span>
-					<span class="pull-right-container">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-                          </svg>
+	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+	<span>Projects</span>
+	<span class="pull-right-container">
+		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+			<path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+		  </svg>
 
+		  
+	</span>
+  </a>
+  <ul class="treeview-menu">
+	   
+		<li>
+			<?php 
+				
+				$checkproject = App\Models\Project::where('user_id','=',Auth::user()->id)->first();
+
+				if(!empty($checkproject)){
+
+					 ?><a class="{{ (request()->routeIs('offsetbids')) ? 'myactive' : '' }}" href="{{ route('offsetbids') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Offset Bids</a><?php
+
+				}else{
+
+
+				}
+
+				
+			?>
+			
+		</li>
+
+		<li>
+			<a class="{{ (request()->routeIs('progresslog')) ? 'myactive' : '' }}" href="{{ route('progresslog') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Progress Log</a>
+		</li>
+		<li>
+
+			<?php
+			$allprojects = App\Models\Project::where('user_id','=',Auth::user()->id)->orderBy('id','DESC')->take(3)->get();
+
+			  foreach($allprojects as $value){
+
+				?>
+				  <li><a class="{{ (request()->routeIs('previewproject')) ? 'myactive' : '' }}" href="{{route('previewproject',$value->id) }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>{{ ucfirst($value->project_name) }}</a></li>
+				<?php
+
+			  }
+			?>
+			{{-- <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Eko Farma</a></li>
+			<li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>I-Meet</a></li>
+			<li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Wellness Plus</a></li> --}}
+
+			<?php
+
+					$check = App\Models\User::where('id','=',Auth::user()->id)->first();
+
+					if($check->kyc_status == 0){
+
+					}else{
+
+						?> 
+						<li><a href="#" data-bs-toggle="modal" data-bs-target="#scrollable-modalj"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Add Project</a></li>
+						<?php
+
+					}
+				
+			?>
+
+			
+		</li>	
+  </ul>
 						  
-					</span>
-				  </a>
-				  <ul class="treeview-menu">
-					    {{-- <li>
-							<a class="{{ (request()->routeIs('projectoverview')) ? 'myactive' : '' }}" href="{{ route('projectoverview') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Overview</a>
-						</li> --}}
-						<li>
-							<a class="{{ (request()->routeIs('offsetbids')) ? 'myactive' : '' }}" href="{{ route('offsetbids') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Offset Bids</a>
-						</li>
+						
+						<?php
 
-						<li>
-							<a class="{{ (request()->routeIs('progresslog')) ? 'myactive' : '' }}" href="{{ route('progresslog') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Progress Log</a>
-						</li>
-						<li>
 
-							<?php
-							$allprojects = App\Models\Project::where('user_id','=',Auth::user()->id)->orderBy('id','DESC')->take(3)->get();
-
-							  foreach($allprojects as $value){
-
-								?>
-								  <li><a class="{{ (request()->routeIs('previewproject')) ? 'myactive' : '' }}" href="{{route('previewproject',$value->id) }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>{{ ucfirst($value->project_name) }}</a></li>
-								<?php
-
-							  }
-							?>
-							{{-- <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Eko Farma</a></li>
-							<li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>I-Meet</a></li>
-							<li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Wellness Plus</a></li> --}}
-
-							<?php
-
-									$check = App\Models\User::where('id','=',Auth::user()->id)->first();
-
-									if($check->kyc_status == 0){
-
-									}else{
-
-										?> 
-										<li><a href="#" data-bs-toggle="modal" data-bs-target="#scrollable-modalj"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Add Project</a></li>
-										<?php
-
-									}
-								
-							?>
-
-							
-						</li>	
-				  </ul>
+					  }
+						
+						
+				    ?>
+				  
 				</li>				
 				
 				<li>

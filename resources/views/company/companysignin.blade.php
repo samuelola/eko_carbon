@@ -121,7 +121,9 @@
 									  </div>
 								</form>				
 								<div class="text-center">
-									<p class="mt-15 mb-0 text-fade">New to Eko Carbon?<a href="{{ route('companylist') }}" style="color:#187a56" class="ms-5">Create Account</a></p>
+									{{-- <p class="mt-15 mb-0 text-fade">New to Eko Carbon?<a href="{{ route('companylist') }}" style="color:#187a56" class="ms-5">Create Account</a></p> --}}
+
+									<p class="mt-15 mb-0 text-fade">New to Eko Carbon?<a href="{{ route('companysignup') }}" style="color:#187a56" class="ms-5">Create Account</a></p>
 								</div>
 								
 								

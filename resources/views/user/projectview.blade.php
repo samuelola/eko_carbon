@@ -242,11 +242,13 @@
 	}
 
 	
-	$total_carbon_unit_percent = (isset($total_carbon_unit) ? $total_carbon_unit : ''/$emission_credit);
+	$total_carbon_unit_percent = ($total_carbon_unitr/$emission_credit);
 
 	
 
 	$total_carbon_unit_percentresult = $total_carbon_unit_percent*100;
+
+	
 
     $sa = [];
 	foreach ($saratimee as $vall) {

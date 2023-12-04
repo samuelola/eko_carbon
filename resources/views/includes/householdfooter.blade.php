@@ -84,7 +84,7 @@
                     </div>
                     <div class="d-flex flex-column fw-500">
                         <a href="{{ route('householdlogout') }}" class="text-dark hover-primary mb-1 fs-16">Logout</a>
-                        
+                        {{-- <a href="{{ route('logout') }}" class="text-dark hover-primary mb-1 fs-16">Logout</a> --}}
                     </div>
                 </div>
                 {{-- <div class="d-flex align-items-center mb-30">

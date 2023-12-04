@@ -117,40 +117,47 @@ class KycController extends Controller
 
     public function dashboard(Request $request){
         
+        
         $theprojects = Project::where('user_id',Auth::user()->id)->take(3)->get();
 
-        foreach($theprojects as $thval){
+        $theproid = Project::where('user_id',Auth::user()->id)->first(); 
 
-            $theproid = $thval;
+        if(!empty($theproid)){
 
-        }
+
+            
         $countprojectview = Project::where('user_id',$theproid->user_id)->sum('theprojectview');
+        
+        
         //percentage of views per project
+
         $offsetterspayments = OffsettersTransaction::where('owner_id',$theproid->user_id)->orderBy('id', 'DESC')->get();
+
         $allprojects = Project::where('user_id',$theproid->user_id)->orderBy('id', 'DESC')->take(4)->get();
+
         $allproject_type = Project_type::all();
         
 
         $offsettersowner = OffsettersTransaction::where('owner_id',Auth::user()->id)->get();
 
-        //get all
+        $offsetterspaymentsts = Project::where('user_id',Auth::user()->id)->get();
+        
+        return view('user.dashboard',compact('theprojects','countprojectview','offsetterspayments','allprojects','allproject_type','offsettersowner','offsetterspaymentsts'));
 
-        $theprojectss = Project::where('user_id',Auth::user()->id)->get();
-
-        foreach($theprojectss as $thvall){
-
-            $theproidd = $thvall;
+        }else{
+           
+            return view('user.dashboardd');
 
         }
+        
 
-        $offsetterspaymentsts = Project::where('user_id',Auth::user()->id)->get();
+        
+        
 
         //pie chart count
 
         
-
         
-        return view('user.dashboard',compact('theprojects','countprojectview','offsetterspayments','allprojects','allproject_type','offsettersowner','offsetterspaymentsts'));
     }
 
     public function admindashboard(Request $request){
@@ -749,7 +756,50 @@ class KycController extends Controller
         return "Updated successfully";
     }
 
-    
+    public function verifybank (Request $request){
+
+        $samacct = $request->samacct;
+		$bank_code = $request->bank_code;
+
+        $curl = curl_init();
+
+        $data_string = json_encode( 
+            array(
+             'account_number'=> $samacct,
+             'account_bank'=> $bank_code
+             )
+         );
+
+
+            $tokenn = "Bearer FLWSECK-058a7b7f8cacbfb5048f4d803ce8b4de-18af5984e72vt-X";  
+
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.flutterwave.com/v3/accounts/resolve',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => $data_string,
+            CURLOPT_HTTPHEADER => array(
+            'Content-Type: application/json',  
+            "Authorization: $tokenn"
+            ),
+            ));
+
+              curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+              curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+
+           $response = curl_exec($curl);
+           $err = curl_error($curl);
+           curl_close($curl);
+          
+           return $response;
+
+    }
 
     
 }

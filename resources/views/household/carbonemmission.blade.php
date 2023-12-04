@@ -1,7 +1,7 @@
 @extends('layouts.householdmaster')
 
 @section('title')
-    | Dashboard
+    | Carbon Emission
 @endsection
 
 @section('content')

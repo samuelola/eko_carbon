@@ -332,7 +332,8 @@ $(document).ready(function (e) {
 					console.log(data);
 
 					Swal.fire(data, data.message, 'success').then(() => {
-    location.reload();
+    // location.reload();
+    window.location = "/dashboard";   
 });
                     
                 },

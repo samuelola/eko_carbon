@@ -17,7 +17,7 @@
               <div class="col-12">
                   <div class="card">
                       <div class="card-body">
-                          <h4 class="header-title">Company Overview</h4>
+                          <h4 class="header-title">Project Overview</h4>
                           <p>An overview of the project,goals and outcomes</p>
 
                           <hr style="margin: 1rem 0;
@@ -40,7 +40,7 @@
                                     
                                 </div>
 
-                                <p>About the company</p>
+                                <p>About the Project</p>
                                 <p >Curabitur ligula sapien, tincidunt non, euismod vitae, posuere imperdiet, leo. Maecenas malesuada.</p>
                                
 
@@ -81,7 +81,7 @@
 
                                              <form action="">
                                                 
-                                                <p><input class="form-control" type="text" style="width: 90%;" value="{{ $profile_lister->external_link }}" id="myInput">
+                                                <p><input class="form-control" type="text" style="width: 90%;" value="{{ isset($profile_lister->external_link) ? $profile_lister->external_link : '' }}" id="myInput">
 
                                                 <div class="tooltip">    
                                                     <a id="samt" href="#" style="position: relative;

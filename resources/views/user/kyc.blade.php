@@ -75,13 +75,13 @@
           <div class="navbar-custom-menu r-side">
             <ul class="nav navbar-nav">
                 <li class="btn-group d-md-inline-flex d-none">
-                              <label class="switch">
+                              {{-- <label class="switch">
                                   <span class="waves-effect skin-toggle waves-light">
                                         <input type="checkbox" data-mainsidebarskin="toggle" id="toggle_left_sidebar_skin">
                                         <span class="switch-on"><i data-feather="moon"></i></span>
                                         <span class="switch-off"><i data-feather="sun"></i></span>
                                     </span>
-                                </label>
+                                </label> --}}
                 </li>
                 <!--<li class="dropdown notifications-menu btn-group ">
                     <a href="#" class="waves-effect waves-light btn-primary-light svg-bt-icon" data-bs-toggle="dropdown" title="Notifications">
@@ -733,7 +733,7 @@
 									</label>
 									<input id='input-file' type='file' name="image" required/>
 
-									
+									<span id="mech" style="margin-left: 118px;"><!-- Selected file will get here --></span>
 								  </div>
 
 								  {{-- <div class="form-group">
@@ -1216,22 +1216,6 @@
 <script>
 	$(document).ready(function (e) {
 
-// 		$('#mybank').on('keyup', function(){
-	   
-// 	   var bank = $('#mybank').val();
-  
-//    });	
-
-//    $('#sam').on('change', function() {
-
-//       var bankcode = this.value;
-	  
-	  
-// });
-
-// var bank = $('#mybank').val();
-
-// 	  console.log(bank);
 $( "#myloader" ).hide();
 
 $('#samt').on('change', function () {
@@ -1240,27 +1224,49 @@ $('#samt').on('change', function () {
 				var samacct = $('#mybank').val();
 
 
-				// console.log(bank_code);
-				// console.log(samacct);
-
-var url = "https://maylancer.org/api/nuban/api.php?account_number="+samacct+"&bank_code="+bank_code
-$.ajax({
-	url: url,
-	type: "GET",
+// var url = "https://maylancer.org/api/nuban/api.php?account_number="+samacct+"&bank_code="+bank_code
+// $.ajax({
+// 	url: url,
+// 	type: "GET",
 	
-	dataType: "json",
+// 	dataType: "json",
+// 	success: function (res) {
+	    
+
+// 		var myacctname = res.account_name
+
+// 		$('#myacctname').val(myacctname);
+
+// 	}
+// });
+
+          $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+$.ajax({
+	type: "post",
+	url: '/verifybank',
+	dataType: 'json',
+	contentType: 'application/x-www-form-urlencoded',
+	data: {
+		_token : $("#csrf").val(),
+		samacct:samacct,
+		bank_code:bank_code
+		
+	},
 	success: function (res) {
-		// console.log(res.account_name);
-
-		var myacctname = res.account_name
-
+		var myacctname = res.data.account_name
 		$('#myacctname').val(myacctname);
 
 	}
 });
 
+
 $( "#myloader" ).show();
-setTimeout(removeLoader, 2500);     
+setTimeout(removeLoader, 2700);     
             });
 
 
@@ -1444,6 +1450,17 @@ function removeLoader(){
   });  
 }
 </script>
+
+<script>
+	$(document).ready(function() {
+		$('#input-file').change(function(e) {
+			var geekss = e.target.files[0].name;
+			$("#mech").text(geekss + ' is the selected file.');
+			// $("#mee").text(geekss);
+  
+		});
+	});
+  </script
 
 
 </body>

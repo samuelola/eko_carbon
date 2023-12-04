@@ -58,12 +58,12 @@
                                       @endphp
                                        @foreach ($userscount as $theregistration)
                                        <tr>
-                                           <td>{{ $theregistration->id }}</td>
+                                           <td>{{ isset($theregistration->id) ? $theregistration->id : '' }}</td>
                                            {{-- <td>{{ $sn+=1; }}</td> --}}
-                                           <td>{{$theregistration->project->idproject}}</td>
-                                           <td>{{ ucfirst($theregistration->project->project_name) }}</td>
-                                           <td>{{ $theregistration->project->tonnes }}/{{ $theregistration->project->carbon_credit}}</td>
-                                           <td>{{ ucfirst($theregistration->user->firstname) }} {{ ucfirst($theregistration->user->lastname) }}</td>
+                                           <td>{{isset($theregistration->project->idproject) ? $theregistration->project->idproject : 'null'}}</td>
+                                           <td>{{ isset($theregistration->project->project_name) ? ucfirst($theregistration->project->project_name) : ''  }}</td>
+                                           <td>{{ isset($theregistration->project->tonnes) ? $theregistration->project->tonnes : 'null' }}/{{ isset($theregistration->project->carbon_credit) ? $theregistration->project->carbon_credit : 'null'}}</td>
+                                           <td>{{ isset($theregistration->user->firstname) ? ucfirst($theregistration->user->firstname) : '' }} {{ isset($theregistration->user->lastname) ? ucfirst($theregistration->user->lastname) : '' }}</td>
                                            <td>${{ isset($theregistration->project->projectcost) ? $theregistration->project->projectcost : '0' }}</td>
                                            
                                            {{-- <td>
